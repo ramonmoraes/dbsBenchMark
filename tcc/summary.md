@@ -1,5 +1,5 @@
 # 1. Introdução
-[Introdução](./introducao/introducao.md)
+- [Introdução](./introducao/introducao.md)
 
 # 2. Objetos de Estudo
 - [grafos](./objetoDeEstudo/grafos.md)
