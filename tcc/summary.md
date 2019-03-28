@@ -8,8 +8,8 @@
 
 # 3. Metodologia
 - [dados](./metodologia/dados.md)
-- [queries](./metodologia/queries.md)
 - [schemas](./metodologia/schemas.md)
+- [queries](./metodologia/queries.md)
 
 # 4. Resultados
 - [resultados](./resultados/resultados.md)
