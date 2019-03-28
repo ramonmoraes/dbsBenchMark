@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 pydgraph = "*"
-mysql-connector = "*"
 mysqlclient = "*"
 
 [dev-packages]
