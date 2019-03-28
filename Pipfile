@@ -4,7 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pydgraph = "1.0.3"
+pydgraph = "*"
+mysql-connector = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
