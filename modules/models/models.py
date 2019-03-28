@@ -4,7 +4,7 @@ from schematics.models import Model
 
 class Person(Model):
     name = StringType()
-
+    last_name = StringType()
 
 class Judge(Person):
     is_judge = BooleanType()
