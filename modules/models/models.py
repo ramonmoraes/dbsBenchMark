@@ -3,8 +3,8 @@ from schematics.models import Model
 
 
 class Person(Model):
-    name = StringType()
-    last_name = StringType()
+    name = StringType(default="")
+    last_name = StringType(default="")
 
 class Judge(Person):
     is_judge = BooleanType(default=True)
@@ -15,24 +15,24 @@ class Lawyer(Person):
 
 
 class Disctrict(Model):
-    name = StringType()
-    estate = StringType()
+    name = StringType(default="")
+    estate = StringType(default="")
 
 
 class CourtSection(Model):
-    name = StringType()
+    name = StringType(default="")
 
 
 class Subject(Model):
-    name = StringType()
+    name = StringType(default="")
 
 
 class Kind(Model):
-    name = StringType()
+    name = StringType(default="")
 
 
 class Lawsuit(Model):
-    number = StringType()
+    number = StringType(default="")
     judge = ModelType(Judge)
     lawyers = ListType(ModelType(Lawyer))
     related_people = ListType(ModelType(Person))
