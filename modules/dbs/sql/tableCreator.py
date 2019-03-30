@@ -7,7 +7,6 @@ TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
 class TableCreator:
     def __init__(self, models):
         self.models = models
-        # self.create_tables()
 
 
     def get_table_name(self, model):
@@ -39,4 +38,4 @@ class TableCreator:
             return "int"
         if val == type(True):
             return "boolean"
-        raise Exception("Not found type for", raw)
+        raise Exception("Complex table", raw)
