@@ -1,4 +1,4 @@
-from modules.models.tableCreator import TableCreator
+from modules.dbs.sql.tableCreator import TableCreator
 from schematics.models import Model
 from schematics.types import StringType, ListType, BooleanType, ModelType
 
