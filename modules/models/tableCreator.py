@@ -1,4 +1,8 @@
-TABLE_TEMPLATE = "CREATE TABLE {table_name} ({columns});"
+TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
+    id INT AUTO_INCREMENT,
+    {columns},
+    PRIMARY KEY (id)
+);"""
 
 class TableCreator:
     def __init__(self, models):
