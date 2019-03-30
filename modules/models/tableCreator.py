@@ -1,13 +1,9 @@
-TABLE_TEMPLATE = """
-CREATE TABLE {table_name} (
-  {columns}
-);
-"""
+TABLE_TEMPLATE = "CREATE TABLE {table_name} ({columns});"
 
 class TableCreator:
     def __init__(self, models):
         self.models = models
-        self.create_tables()
+        # self.create_tables()
 
 
     def get_table_name(self, model):
@@ -15,6 +11,7 @@ class TableCreator:
 
 
     def create_tables(self):
+        tables = []
         for model in self.models:
             columns = []
             for k, v in model.to_primitive().items():
@@ -23,9 +20,10 @@ class TableCreator:
                 )
             table = TABLE_TEMPLATE.format(
                 table_name=self.get_table_name(model),
-                columns= ",\n".join(columns)
+                columns= ",".join(columns)
             )
-            print(table)
+            tables.append(table)
+        return tables
 
 
 
