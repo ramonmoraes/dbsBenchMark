@@ -19,3 +19,12 @@ def test_simlpe_create_table(snapshot):
     )
 
     snapshot.assert_match(tc.create_tables()[0])
+
+def test_get_type(snapshot):
+    tc = TableCreator(
+        models=[SimpleModel()]
+    )
+
+    snapshot.assert_match(tc.get_type(""))
+    snapshot.assert_match(tc.get_type(True))
+    snapshot.assert_match(tc.get_type(1))
