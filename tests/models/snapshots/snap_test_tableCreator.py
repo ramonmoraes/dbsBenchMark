@@ -9,9 +9,9 @@ snapshots = Snapshot()
 
 snapshots['test_table_name 1'] = 'simplemodelTable'
 
-snapshots['test_simlpe_create_table 1'] = 'CREATE TABLE simplemodelTable (foo string);'
+snapshots['test_simlpe_create_table 1'] = 'CREATE TABLE simplemodelTable (foo varchar(255));'
 
-snapshots['test_get_type 1'] = 'string'
+snapshots['test_get_type 1'] = 'varchar(255)'
 
 snapshots['test_get_type 2'] = 'boolean'
 

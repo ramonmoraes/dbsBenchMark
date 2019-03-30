@@ -29,8 +29,8 @@ class TableCreator:
 
     def get_type(self, raw):
         val = type(raw)
-        if val == type(""):
-            return "string"
+        if val == type(""): # string
+            return "varchar(255)"
         if val == type(1):
             return "int"
         if val == type(True):
