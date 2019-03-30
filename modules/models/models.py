@@ -7,11 +7,11 @@ class Person(Model):
     last_name = StringType()
 
 class Judge(Person):
-    is_judge = BooleanType()
+    is_judge = BooleanType(default=True)
 
 
 class Lawyer(Person):
-    is_lawyer = BooleanType()
+    is_lawyer = BooleanType(default=True)
 
 
 class Disctrict(Model):
