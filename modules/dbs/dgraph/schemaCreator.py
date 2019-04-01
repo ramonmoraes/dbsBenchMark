@@ -1,4 +1,4 @@
-SCHEMA_TEMPLATE = """ {label}: {type} ."""
+SCHEMA_TEMPLATE = """ {label}: {type} . \n"""
 
 class SchemaCreator:
     def __init__(self, models):
@@ -14,18 +14,20 @@ class SchemaCreator:
 
 
 
-    def create_schema(self):
+    def create_schemas(self):
         schemas = []
         for model in self.models:
             schemas.append(
                 self.get_identifier(model)
             )
             for k, v in model.to_primitive().items():
-                schema = SCHEMA_TEMPLATE.format(
-                    label=k,
-                    type=self.get_type(v)
-                )
-                schemas.append(schema)
+                index_type=self.get_type(v)
+                if index_type:
+                    schema = SCHEMA_TEMPLATE.format(
+                        label=k,
+                        type=index_type
+                    )
+                    schemas.append(schema)
         return list(set(schemas))
 
 
@@ -38,4 +40,4 @@ class SchemaCreator:
             return "double"
         if val == type(True):
             return "bool"
-        raise Exception("Complex schema", raw)
+        return None
