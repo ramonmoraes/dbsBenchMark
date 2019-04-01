@@ -8,6 +8,7 @@ lawsuits_path = "data/lawsuits.json"
 lawsuits_len = 4000000
 names_len = 100787
 names_path = "data/names.json"
+courts_path "data/courts.json"
 
 def get_courts():
     with open(courts_path, 'r') as f:
@@ -51,6 +52,7 @@ def get_splitted_roles():
 def create_data_set():
     d = get_splitted_roles()
     d['lawsuits'] = get_lawsuits()
+    d['courts'] = get_courts()
     return d
 
 
