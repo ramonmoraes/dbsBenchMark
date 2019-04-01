@@ -18,3 +18,7 @@ updating snapshots
 ```
 pytest --snapshot-update
 ```
+
+### Obs
+
+The schema cretor uses `set()` which does not mantain the same order, thefore this test usually breaks
