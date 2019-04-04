@@ -3,6 +3,6 @@ Bancos de dados são ferramentas para armazenar dados de forma persistente e de 
 
 Assim também são feitos os bancos de dados SQL, cada registro deve seguir um padrão (_schema_), e deve ser inserido na sua tabela (_table_) relativa, que são armazenadas no banco de dados. É comun dividir um banco em diversas tabelas, uma para cada tipo de registro.
 
-Como as informações são dispersas em diversas tabelas separadas por tipos, as informações de uma tabela completam informações de outra. Um registro de uma tabela referencia outro registro de outra tabela, assim informando que aqueles registros apesar de estarem separados por tabelas, pertecem a mesma informação original.
+Como as informações são dispersas em diversas tabelas separadas por tipos, as informações de uma tabela completam informações de outra. Para isso o registro de uma tabela referencia outro registro de outra tabela, assim informando que aqueles registros apesar de estarem separados por tabelas, pertecem a mesma informação original.
 
-Para conseguir essa informação completa requere o uso de cruzamento de informações entre tabelas(_join_), onde é dito quais tabelas se co-relacionam, assim onde há registro referenciando outro registro, após o uso do join havera a união dos registros resultado na informação completa.
+Para conseguir essa informação completa requere o uso de cruzamento de informações entre tabelas(_join_), onde é dito quais tabelas se co-relacionam, assim onde há registro referenciando outro registro, após o uso do join, havera a união dos registros resultado na informação completa.
