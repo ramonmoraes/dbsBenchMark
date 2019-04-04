@@ -22,11 +22,6 @@ class Disctrict(Model):
 class CourtSection(Model):
     name = StringType(default="")
 
-
-class Subject(Model):
-    name = StringType(default="")
-
-
 class Kind(Model):
     name = StringType(default="")
 
@@ -38,7 +33,4 @@ class Lawsuit(Model):
     related_people = ListType(ModelType(Person))
     court_section = ModelType(CourtSection)  ## Segunda turma do colegial
     disctrict = ModelType(Disctrict)  # SSA, BH
-    subject = ModelType(
-        Subject
-    )  # (Ex: “Inclusão Indevida em Cadastro de Inadimplentes”, “Obrigação de Fazer”)
     kind = ModelType(Kind)  # Direito do Trabalho", "Direito Penal"

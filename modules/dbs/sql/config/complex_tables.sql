@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS lawsuitTable (
     FOREIGN KEY(judge_id) REFERENCES judgeTable(id),
     FOREIGN KEY(courtsection_id) REFERENCES courtsectionTable(id),
     FOREIGN KEY(disctrict_id) REFERENCES disctrictTable(id),
-    FOREIGN KEY(subject_id) REFERENCES subjectTable(id),
     FOREIGN KEY(kind_id) REFERENCES kindTable(id),
     PRIMARY KEY (id)
 );
