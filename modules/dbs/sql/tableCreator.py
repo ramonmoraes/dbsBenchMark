@@ -4,14 +4,17 @@ TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
     PRIMARY KEY (id)
 );"""
 
+def get_table_name(str):
+    return "{}{}".format(str.lower(), "Table")
+
+
 class TableCreator:
     def __init__(self, models):
         self.models = models
 
 
     def get_table_name(self, model):
-        return "{}{}".format(model.__class__.__name__.lower(), "Table")
-
+        return get_table_name(model.__class__.__name__.lower())
 
     def create_tables(self):
         tables = []
