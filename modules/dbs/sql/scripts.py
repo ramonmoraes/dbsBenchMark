@@ -1,10 +1,25 @@
-from modules.models.models import Person, Lawyer, Judge, Kind, CourtSection, Disctrict, Subject
+from modules.models.models import (
+    Person,
+    Lawyer,
+    Judge,
+    Kind,
+    CourtSection,
+    Disctrict,
+    Subject,
+)
 from modules.dbs.sql.tableCreator import TableCreator
+
 
 def create_simple_tables():
     tc = TableCreator(
         models=[
-            Person(), Lawyer(), Judge(), Kind(), CourtSection(), Disctrict(), Subject()
+            Person(),
+            Lawyer(),
+            Judge(),
+            Kind(),
+            CourtSection(),
+            Disctrict(),
+            Subject(),
         ]
     )
     tables = tc.create_tables()
