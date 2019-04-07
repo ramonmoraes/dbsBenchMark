@@ -8,28 +8,26 @@ from snapshottest import Snapshot
 snapshots = Snapshot()
 
 snapshots['test_schema_creator 1'] = [
-    ''' is_person: bool . 
-''',
     ''' name: string . 
 ''',
-    ''' is_judge: bool . 
-''',
-    ''' is_disctrict: bool . 
+    ''' is_person: bool . 
 ''',
     ''' estate: string . 
 ''',
-    ''' is_courtsection: bool . 
+    ''' is_lawsuit: bool . 
 ''',
     ''' is_lawyer: bool . 
 ''',
+    ''' is_judge: bool . 
+''',
     ''' number: string . 
 ''',
-    ''' is_kind: bool . 
+    ''' is_disctrict: bool . 
 ''',
     ''' last_name: string . 
 ''',
-    ''' is_subject: bool . 
+    ''' is_courtsection: bool . 
 ''',
-    ''' is_lawsuit: bool . 
+    ''' is_kind: bool . 
 '''
 ]
