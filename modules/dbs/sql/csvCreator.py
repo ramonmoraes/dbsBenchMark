@@ -1,4 +1,3 @@
-import csv
 from modules.relatedModels import get_related_model, load_dataset
 import os
 from modules.dbs.sql.tableCreator import get_table_name
@@ -47,8 +46,6 @@ class CsvCreator:
             print("Writting :", k)
             for batch in list_batch(k, 10000):
                 file_path = "{}/{}.csv".format(CSV_PATH, get_table_name(k))
-                print("Deleting old file at: ", file_path)
-                os.remove(file_path)
                 with open(file_path, 'a') as f:
                     dicts = list( map(lambda m: m.to_primitive(), v) )
                     for dikt in list_batch(dicts, 3):
