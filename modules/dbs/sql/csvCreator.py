@@ -1,5 +1,5 @@
+import csv
 from modules.relatedModels import get_related_model, load_dataset
-import os
 from modules.dbs.sql.tableCreator import get_table_name
 from modules.models.models import *
 from itertools import islice, chain
