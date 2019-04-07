@@ -11,22 +11,25 @@ names_path = "data/names.json"
 courts_path = "data/courts.json"
 kinds_path = "data/kinds.json"
 
+
 def get_courts():
-    with open(courts_path, 'r') as f:
-        return json.load(f).get('courts')
+    with open(courts_path, "r") as f:
+        return json.load(f).get("courts")
+
 
 def get_names():
-    with open(names_path, 'r') as f:
-        return json.load(f).get('names')
+    with open(names_path, "r") as f:
+        return json.load(f).get("names")
+
 
 def get_lawsuits():
-    with open(lawsuits_path, 'r') as f:
-        return json.load(f).get('lawsuits_numbers')
+    with open(lawsuits_path, "r") as f:
+        return json.load(f).get("lawsuits_numbers")
 
 
 def get_splitted_roles():
-    judges_size = math.ceil(names_len / 10000) # 0,01%
-    lawyers_size = math.ceil((names_len * 50) / 10000) # 0,5%
+    judges_size = math.ceil(names_len / 10000)  # 0,01%
+    lawyers_size = math.ceil((names_len * 50) / 10000)  # 0,5%
 
     names_list = get_names()
     judges = []
@@ -43,24 +46,21 @@ def get_splitted_roles():
 
     related_peoples = names_list
     soma = len(related_peoples) + len(judges) + len(lawyers)
-    return {
-        "related_peoples": related_peoples,
-        "lawyers": lawyers,
-        "judges": judges,
-    }
+    return {"related_peoples": related_peoples, "lawyers": lawyers, "judges": judges}
+
 
 def get_kinds():
-    with open(kinds_path, 'r') as f:
-        return json.load(f).get('kinds')
+    with open(kinds_path, "r") as f:
+        return json.load(f).get("kinds")
 
 
 def create_data_set():
     d = get_splitted_roles()
-    d['lawsuits'] = get_lawsuits()
-    d['courts'] = get_courts()
-    d['kinds'] = get_kinds()
+    d["lawsuits"] = get_lawsuits()
+    d["courts"] = get_courts()
+    d["kinds"] = get_kinds()
     return d
 
 
-with open("data/full_dataset.json", 'w') as f:
+with open("data/full_dataset.json", "w") as f:
     json.dump(create_data_set(), f)

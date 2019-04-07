@@ -1,10 +1,27 @@
-from modules.models.models import Person, Lawyer, Judge, Kind, CourtSection, Disctrict, Subject, Lawsuit
+from modules.models.models import (
+    Person,
+    Lawyer,
+    Judge,
+    Kind,
+    CourtSection,
+    Disctrict,
+    Subject,
+    Lawsuit,
+)
 from modules.dbs.dgraph.schemaCreator import SchemaCreator
+
 
 def create_schema():
     sc = SchemaCreator(
         models=[
-            Person(), Lawyer(), Judge(), Kind(), CourtSection(), Disctrict(), Subject(), Lawsuit()
+            Person(),
+            Lawyer(),
+            Judge(),
+            Kind(),
+            CourtSection(),
+            Disctrict(),
+            Subject(),
+            Lawsuit(),
         ]
     )
     schemas = sc.create_schemas()

@@ -6,6 +6,7 @@ class Person(Model):
     name = StringType(default="")
     last_name = StringType(default="")
 
+
 class Judge(Person):
     is_judge = BooleanType(default=True)
 
@@ -21,6 +22,7 @@ class Disctrict(Model):
 
 class CourtSection(Model):
     name = StringType(default="")
+
 
 class Kind(Model):
     name = StringType(default="")
