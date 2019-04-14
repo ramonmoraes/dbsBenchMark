@@ -51,21 +51,3 @@ class CsvCreator:
                     w = csv.DictWriter(f, dicts[0].keys())
                     w.writeheader()
                     w.writerows(dicts)
-
-    def create(self, percent = 100):
-        max_csv_size = len(self.lawsuits) * percent / 100
-        if max_csv_size < 1:
-            print("Can not create less then 1 csv")
-            return
-        print("Getting {} csv".format(max_csv_size))
-        csv_count = 0
-        for lawsuit in self.iter_from_attribte('lawsuits_mumber'):
-            if csv_count>=max_csv_size:
-                return
-            csv_count+=1
-
-
-creator = CsvCreator()
-creator.create()
-
-# CsvCreator().create(0.0001)
