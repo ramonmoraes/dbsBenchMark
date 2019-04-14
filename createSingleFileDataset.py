@@ -27,6 +27,11 @@ def get_lawsuits():
         return json.load(f).get("lawsuits_numbers")
 
 
+def get_kinds():
+    with open(kinds_path, "r") as f:
+        return json.load(f).get("kinds")
+
+
 def get_splitted_roles():
     judges_size = math.ceil((names_len * 10) / 10000)  # 0,1%
     lawyers_size = math.ceil((names_len * 50) / 10000)  # 0,5%
@@ -46,12 +51,11 @@ def get_splitted_roles():
 
     related_peoples = names_list
     soma = len(related_peoples) + len(judges) + len(lawyers)
-    return {"related_peoples": related_peoples, "lawyers": lawyers, "judges": judges}
-
-
-def get_kinds():
-    with open(kinds_path, "r") as f:
-        return json.load(f).get("kinds")
+    return {
+        "related_peoples": related_peoples,
+        "lawyers": lawyers,
+        "judges": judges
+        }
 
 
 def create_data_set():
