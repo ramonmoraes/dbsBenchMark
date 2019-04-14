@@ -28,7 +28,7 @@ def get_lawsuits():
 
 
 def get_splitted_roles():
-    judges_size = math.ceil(names_len / 10000)  # 0,01%
+    judges_size = math.ceil(names_len / 10000)  # 0,1%
     lawyers_size = math.ceil((names_len * 50) / 10000)  # 0,5%
 
     names_list = get_names()
