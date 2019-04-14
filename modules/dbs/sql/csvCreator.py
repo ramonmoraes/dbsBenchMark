@@ -38,32 +38,34 @@ class CsvCreator:
             yield d
 
     def create_basic_csv(self):
-        d = self.__dict__
-        del d["lawsuits_numbers"]
-        del d["_meta_data"]
-
-        for k, v in d.items():
+        obj = self.__dict__
+        del obj["lawsuits_numbers"]
+        del obj["_meta_data"]
+        # import pdb; pdb.set_trace()
+        for k, v in obj.items():
             print("Writting :", k)
-            for batch in list_batch(k, 10000):
+            for batch in list_batch(k, 500000):
                 file_path = "{}/{}.csv".format(CSV_PATH, get_table_name(k))
                 with open(file_path, 'a') as f:
                     dicts = list( map(lambda m: m.to_primitive(), v) )
-                    for dikt in list_batch(dicts, 3):
-                        w = csv.DictWriter(f, dicts[0].keys())
-                        w.writeheader()
-                        w.writerows(dicts)
+                    w = csv.DictWriter(f, dicts[0].keys())
+                    w.writeheader()
+                    w.writerows(dicts)
 
-CsvCreator().create_basic_csv()
+    def create(self, percent = 100):
+        max_csv_size = len(self.lawsuits) * percent / 100
+        if max_csv_size < 1:
+            print("Can not create less then 1 csv")
+            return
+        print("Getting {} csv".format(max_csv_size))
+        csv_count = 0
+        for lawsuit in self.iter_from_attribte('lawsuits_mumber'):
+            if csv_count>=max_csv_size:
+                return
+            csv_count+=1
 
-# def create(self, percent = 100):
-#     max_csv_size = len(self.lawsuits) * percent / 100
-#     if max_csv_size < 1:
-#         print("Can not create less then 1 csv")
-#         return
-#     print("Getting {} csv".format(max_csv_size))
-#     csv_count = 0
-#     for lawsuit in self.lawsuits:
-#         if csv_count>=max_csv_size:
-#             return
-#         csv_count+=1
+
+creator = CsvCreator()
+creator.create()
+
 # CsvCreator().create(0.0001)
