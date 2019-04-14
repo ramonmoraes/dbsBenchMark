@@ -17,7 +17,7 @@ def create_query(table, objs):
 
     queries = []
     for obj in objs:
-        query_template = "INSERT INTO {table} ({columns}) ({values});"
+        query_template = "INSERT INTO {table} ({columns}) VALUES ({values});"
         columns = obj.keys()
         values = list(map(format_col_values, obj.values()))
 

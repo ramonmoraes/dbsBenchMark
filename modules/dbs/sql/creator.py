@@ -55,37 +55,44 @@ class CsvCreator(Creator):
 tc = TableCreator([Lawsuit])
 
 lawsuit_query_template = """
-INSERT INTO {table} (number, judge_id, kind_id)
-VALUES ({number}, ({judge_id}), ({kind_id}));
+INSERT INTO {table} (number, judge_id, kind_id) VALUES ("{number}", {judge_id}, {kind_id});
 """
 
 #TODO: Add UNIQUE TO SIMPLE TABLES!!!!
 class DataCreator(Creator):
     def get_id(self, model):
-        return "SELECT id FROM {table} WHERE {identifier}=={value}".format(
+        return "(SELECT id FROM {table} WHERE {identifier}=\"{value}\")".format(
             table = tc.get_table_name(model),
             identifier = model.keys()[0],
             value = model.values()[0]
         )
 
+    def clean_file(self, path):
+        f = open(path, 'w')
+        f.close()
 
-    def create_data(self):
-        max_data = 3
+    def create_data(self, max_data=1):
+        data_path = 'data/insert_queries.sql'
+        self.clean_file(data_path)
         data_count = 0
         for lawsuits_numbers in list_batch(self.lawsuits_numbers):
             if data_count >= max_data:
+                print("Creating data ended")
                 return
             insert_queries = []
             for lawsuit_number in lawsuits_numbers:
                 if data_count >= max_data:
+                    with open(data_path, 'a') as f:
+                        print('Writting file')
+                        f.writelines(insert_queries)
                     return
 
                 judge = random.choice(self.judges)
                 kind = random.choice(self.kinds)
-                insert_queries.extend([
-                    create_query(tc.get_table_name(judge), judge),
-                    create_query(tc.get_table_name(kind), kind),
-                ])
+
+                for model in [judge, kind]:
+                    insert_queries.extend(create_query(tc.get_table_name(model), model))
+
                 insert_queries.append(
                     lawsuit_query_template.format(
                         table=tc.get_table_name(Lawsuit()),
@@ -94,9 +101,6 @@ class DataCreator(Creator):
                         judge_id=self.get_id(judge)
                     )
                 )
-                for x in insert_queries:
-                    print(x)
-                import pdb; pdb.set_trace()
                 data_count+=1
 
-data = DataCreator().create_data()
+DataCreator().create_data()
