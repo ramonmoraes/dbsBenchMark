@@ -1,10 +1,12 @@
 from modules.dbs.sql.connection import connection
 
+
 def create_tables():
-    base_config_path="modules/dbs/sql/config/"
+    base_config_path = "modules/dbs/sql/config/"
     schemas_paths = list(
         map(
-            lambda name: "{}{}".format(base_config_path, name), ["simple_tables.sql", "complex_tables.sql"]
+            lambda name: "{}{}".format(base_config_path, name),
+            ["simple_tables.sql", "complex_tables.sql"],
         )
     )
 
@@ -18,6 +20,6 @@ def create_tables():
             commands.extend(querys)
 
     for command in commands:
-        print("Executing command:",command)
+        print("Executing command:", command)
         cursor = connection.cursor()
         cursor.execute(command)
