@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS lawsuitTable (
     judge_id int,
     courtsection_id int,
     disctrict_id int,
-    subject_id int,
     kind_id int,
     FOREIGN KEY(judge_id) REFERENCES judgeTable(id),
     FOREIGN KEY(courtsection_id) REFERENCES courtsectionTable(id),
@@ -13,7 +12,7 @@ CREATE TABLE IF NOT EXISTS lawsuitTable (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS lawsuitlawyersTable (
+CREATE TABLE IF NOT EXISTS lawsuitlawyerTable (
     id INT AUTO_INCREMENT,
     lawsuit_id INT,
     lawyer_id INT,
