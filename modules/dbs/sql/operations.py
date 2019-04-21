@@ -57,7 +57,7 @@ class SqlOperations:
     def load_data(self):
         cursor = connection.cursor()
         print("Loading")
-        tables = ["kindsTable", "judgesTable", "related_people", "lawsuits"]
+        tables = ["kindsTable", "judgesTable", "related_peopleTable", "lawsuits"]
         command_template = """
     LOAD DATA LOCAL INFILE "data/csv/{table_name}.csv"
     INTO TABLE kindTable
