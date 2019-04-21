@@ -51,11 +51,7 @@ def get_splitted_roles():
 
     related_peoples = names_list
     soma = len(related_peoples) + len(judges) + len(lawyers)
-    return {
-        "related_peoples": related_peoples,
-        "lawyers": lawyers,
-        "judges": judges
-        }
+    return {"related_peoples": related_peoples, "lawyers": lawyers, "judges": judges}
 
 
 def create_data_set():

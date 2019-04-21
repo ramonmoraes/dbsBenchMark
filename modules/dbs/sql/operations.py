@@ -1,6 +1,7 @@
 from modules.dbs.sql.connection import connection
 from os.path import abspath
 
+
 class SqlOperations:
     def print_cursor(self, cursor):
         for res in cursor.fetchall():
@@ -22,10 +23,12 @@ class SqlOperations:
         querys = commands.split(";")
         querys = filter(lambda x: x.strip(), querys)
         querys = map(lambda s: "{}{}".format(s, ";"), querys)
+        print("[Recreating sql database]")
         for querie in querys:
-            print("Querie:", querie)
+            print("...")
             cursor.execute(querie)
             connection.commit()
+        print("[Done]")
 
     def create_tables(self):
         base_config_path = "modules/dbs/sql/config/"
@@ -44,21 +47,17 @@ class SqlOperations:
                 querys = filter(lambda x: x.strip(), querys)
                 querys = map(lambda s: "{}{}".format(s, ";"), querys)
                 commands.extend(querys)
-
+        print("[Creating sql tables]")
         for command in commands:
             print("Executing command:", command)
             cursor = connection.cursor()
             cursor.execute(command)
+        print("[Done]")
 
     def load_data(self):
         cursor = connection.cursor()
         print("Loading")
-        tables = [
-            "kindsTable",
-            "judgesTable",
-            "related_people",
-            "lawsuits",
-        ]
+        tables = ["kindsTable", "judgesTable", "related_people", "lawsuits"]
         command_template = """
     LOAD DATA LOCAL INFILE "data/csv/{table_name}.csv"
     INTO TABLE kindTable
@@ -73,6 +72,7 @@ class SqlOperations:
             cursor.execute(command_template.format(table_name=table))
         print_cursor(cursor)
         connection.commit()
+
 
 ops = SqlOperations()
 ops.recreate_database()
