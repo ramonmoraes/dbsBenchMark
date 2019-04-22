@@ -25,7 +25,7 @@ class SqlOperations:
         querys = map(lambda s: "{}{}".format(s, ";"), querys)
         print("[Recreating sql database]")
         for querie in querys:
-            print("...")
+            print(".", end="")
             cursor.execute(querie)
             connection.commit()
         print("[Done]")
@@ -49,29 +49,29 @@ class SqlOperations:
                 commands.extend(querys)
         print("[Creating sql tables]")
         for command in commands:
-            print("Executing command:", command)
+            print(".", end="")
             cursor = connection.cursor()
             cursor.execute(command)
         print("[Done]")
 
-    def load_data(self):
+    def load_data(self, tables = ["kindTable", "judgeTable", "personTable"]):
         cursor = connection.cursor()
-        print("Loading")
-        tables = ["kindsTable", "judgesTable", "related_peopleTable", "lawsuits"]
         command_template = """
     LOAD DATA LOCAL INFILE "data/csv/{table_name}.csv"
-    INTO TABLE kindTable
+    INTO TABLE {table_name}
     COLUMNS TERMINATED BY ','
     OPTIONALLY ENCLOSED BY '"'
     LINES TERMINATED BY '\r\n'
     IGNORE 1 ROWS
     (name);
         """
+        print("[Loading sql data]")
         for table in tables:
-            print("Loading table:", table)
+            print("Loading into table:", table)
             cursor.execute(command_template.format(table_name=table))
-        print_cursor(cursor)
+        self.print_cursor(cursor)
         connection.commit()
+        print("[Done]")
 
 
 ops = SqlOperations()
