@@ -77,56 +77,8 @@ class CsvCreator(Creator):
         print("Writting lawsuit csv")
         self.create_lawsuit_csv()
 
+    def create_one_to_many():
+        lawsuits = self.__dict__["lawsuits_numbers"]
+        lawsuit_path = "data/csv/lawsuits.csv"
 
 CsvCreator().create_related_csv()
-
-
-# TODO: Add UNIQUE TO SIMPLE TABLES!!!!
-class DataCreator(Creator):
-    TC = TableCreator([Lawsuit])
-
-    def get_id(self, model):
-        return '(SELECT id FROM {table} WHERE {identifier}="{value}")'.format(
-            table=self.TC.get_table_name(model),
-            identifier=model.keys()[0],
-            value=model.values()[0],
-        )
-
-    def clean_file(self, path):
-        f = open(path, "w")
-        f.close()
-
-    def create_data(self, max_data=1):
-        lawsuit_query_template = """INSERT INTO {table} (number, judge_id, kind_id) VALUES ("{number}", {judge_id}, {kind_id});"""
-        data_path = "data/insert_queries.sql"
-        self.clean_file(data_path)
-        data_count = 0
-        for lawsuits_numbers in list_batch(self.lawsuits_numbers):
-            if data_count >= max_data:
-                print("Creating data ended")
-                return
-            insert_queries = []
-            for lawsuit_number in lawsuits_numbers:
-                if data_count >= max_data:
-                    with open(data_path, "a") as f:
-                        print("Writting file")
-                        f.writelines(insert_queries)
-                    return
-
-                judge = random.choice(self.judges)
-                kind = random.choice(self.kinds)
-
-                for model in [judge, kind]:
-                    insert_queries.extend(
-                        create_query(self.TC.get_table_name(model), model)
-                    )
-
-                insert_queries.append(
-                    lawsuit_query_template.format(
-                        table=self.TC.get_table_name(Lawsuit()),
-                        number=lawsuit_number,
-                        kind_id=self.get_id(kind),
-                        judge_id=self.get_id(judge),
-                    )
-                )
-                data_count += 1
