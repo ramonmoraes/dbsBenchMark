@@ -90,7 +90,7 @@ class CsvCreator(Creator):
                 lawyers_id = random.randint(0, lawyers_max_id)
                 data = {
                     "lawsuit_id": lawsuit_id,
-                    "lawyers_id": lawyers_id
+                    "lawyer_id": lawyers_id
                 }
                 data_list.append(data)
         self.write_csv(lawsuitlawyerTable_path, data_list)
@@ -114,5 +114,5 @@ class CsvCreator(Creator):
 
 
 # CsvCreator().create_related_csv()
-# CsvCreator().create_one_to_many_lawsuitlawyer()
-CsvCreator().create_one_to_many_lawsuitperson()
+CsvCreator().create_one_to_many_lawsuitlawyer()
+# CsvCreator().create_one_to_many_lawsuitperson()
