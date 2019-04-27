@@ -54,27 +54,40 @@ class SqlOperations:
             cursor.execute(command)
         print("[Done]")
 
-    def load_data(self, tables = ["kindTable", "judgeTable", "personTable"]):
+    def load_basic_data(self, tables = ["kindTable", "judgeTable", "personTable"]):
         cursor = connection.cursor()
+        path = "data/csv/{table_name}.csv"
         command_template = """
-    LOAD DATA LOCAL INFILE "data/csv/{table_name}.csv"
+    LOAD DATA LOCAL INFILE "{path}"
     INTO TABLE {table_name}
     COLUMNS TERMINATED BY ','
     OPTIONALLY ENCLOSED BY '"'
     LINES TERMINATED BY '\r\n'
     IGNORE 1 ROWS
-    (name);
+    ({columns});
         """
         print("[Loading sql data]")
         for table in tables:
+            table_path = path.format(table_name=table)
+            columns = ""
+            print("Getting columns from", table_path)
+            with open(table_path, 'r') as f:
+                columns = f.readline().strip()
+
             print("Loading into table:", table)
-            cursor.execute(command_template.format(table_name=table))
+            command = command_template.format(
+                table_name=table,
+                path=table_path,
+                columns=columns
+            )
+            print(command)The settings might not be optimal.
+            cursor.execute(command)
         self.print_cursor(cursor)
         connection.commit()
         print("[Done]")
 
 
 ops = SqlOperations()
-ops.recreate_database()
-ops.create_tables()
-ops.load_data()
+# ops.recreate_database()
+# ops.create_tables()
+# ops.load_basic_data(["lawsuitTable"])
