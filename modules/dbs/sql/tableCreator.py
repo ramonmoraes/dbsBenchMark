@@ -5,9 +5,7 @@ from modules.models.models import (
     Kind,
     CourtSection,
     Disctrict,
-    Subject,
 )
-from modules.dbs.sql.tableCreator import TableCreator
 
 TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
     id INT AUTO_INCREMENT,
