@@ -7,6 +7,8 @@ from modules.dbs.sql.insertData import create_query
 from modules.models.models import *
 from itertools import islice, chain
 
+MAX_LAWYER_PER_LAWSUIT = 3
+MAX_PERSON_PER_LAWSUIT = 4
 
 def list_batch(iterable, n=10000):
     l = len(iterable)
@@ -77,8 +79,23 @@ class CsvCreator(Creator):
         print("Writting lawsuit csv")
         self.create_lawsuit_csv()
 
-    def create_one_to_many():
-        lawsuits = self.__dict__["lawsuits_numbers"]
-        lawsuit_path = "data/csv/lawsuits.csv"
+    def create_one_to_many_lawsuitlawyer(self):
+        lawsuits_amount = self._meta_data.get('sizes').get("lawsuits_numbers")
+        lawyers_max_id = self._meta_data.get('sizes').get("lawyers")
+        lawsuitlawyerTable_path = "data/csv/lawsuitlawyerTable.csv"
+        data_list = []
+        for lawsuit_id in range(lawsuits_amount):
+            lawyer_amount = random.randint(1, 3)
+            for i in range(lawyer_amount):
+                lawyers_id = random.randint(0, lawyers_max_id)
+                data = {
+                    "lawsuit_id": lawsuit_id,
+                    "lawyers_id": lawyers_id
+                }
+                data_list.append(data)
+        self.write_csv(lawsuitlawyerTable_path, data_list)
 
-CsvCreator().create_related_csv()
+
+
+# CsvCreator().create_related_csv()
+CsvCreator().create_one_to_many_lawsuitlawyer()
