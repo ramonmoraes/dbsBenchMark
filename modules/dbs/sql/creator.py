@@ -85,7 +85,7 @@ class CsvCreator(Creator):
         lawsuitlawyerTable_path = "data/csv/lawsuitlawyerTable.csv"
         data_list = []
         for lawsuit_id in range(lawsuits_amount):
-            lawyer_amount = random.randint(1, 3)
+            lawyer_amount = random.randint(1, MAX_LAWYER_PER_LAWSUIT)
             for i in range(lawyer_amount):
                 lawyers_id = random.randint(0, lawyers_max_id)
                 data = {
@@ -95,7 +95,24 @@ class CsvCreator(Creator):
                 data_list.append(data)
         self.write_csv(lawsuitlawyerTable_path, data_list)
 
+    def create_one_to_many_lawsuitperson(self):
+        lawsuits_amount = self._meta_data.get('sizes').get("lawsuits_numbers")
+        related_people = self._meta_data.get('sizes').get("related_people")
+        lawsuitlawyerTable_path = "data/csv/lawsuitpersonTable.csv"
+        data_list = []
+        for lawsuit_id in range(lawsuits_amount):
+            lawyer_amount = random.randint(0, MAX_PERSON_PER_LAWSUIT)
+            for i in range(lawyer_amount):
+                person_id = random.randint(0, related_people)
+                data = {
+                    "lawsuit_id": lawsuit_id,
+                    "person_id": person_id
+                }
+                data_list.append(data)
+        self.write_csv(lawsuitlawyerTable_path, data_list)
+
 
 
 # CsvCreator().create_related_csv()
-CsvCreator().create_one_to_many_lawsuitlawyer()
+# CsvCreator().create_one_to_many_lawsuitlawyer()
+CsvCreator().create_one_to_many_lawsuitperson()
