@@ -111,8 +111,3 @@ class CsvCreator(Creator):
                 }
                 data_list.append(data)
         self.write_csv(lawsuitlawyerTable_path, data_list)
-
-
-creator = CsvCreator()
-creator.create_basic_csv()
-# creator.create_related_csv()
