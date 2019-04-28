@@ -54,7 +54,7 @@ class SqlOperations:
             cursor.execute(command)
         print("[Done]")
 
-    def load_data(self, tables = ["kindTable", "judgeTable", "personTable", "lawyerTable", "lawsuitlawyerTable", "lawsuitpersonTable"]):
+    def load_data(self, tables = ["kindTable", "judgeTable", "personTable","lawsuitTable", "lawyerTable", "lawsuitlawyerTable", "lawsuitpersonTable"]):
         cursor = connection.cursor()
         path = "data/csv/{table_name}.csv"
         command_template = """
