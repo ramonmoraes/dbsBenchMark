@@ -24,7 +24,8 @@ class DgraphCreator(Creator):
     def write_nquads(self, amount = 500000):
         print("Writting nquads at", NQUAD_PATH)
         with open(NQUAD_PATH, 'w') as f:
-            f.writelines("\n".join(self.create_nquad(amount)))
+            nquads = "\n".join(self.create_nquad(amount))
+            f.write(nquads)
 
 
     def create_nquad(self, amount = 500000):
