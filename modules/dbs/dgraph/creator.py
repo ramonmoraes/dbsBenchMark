@@ -21,36 +21,41 @@ def get_nquad(subject, predicate, obj):
 
 NQUAD_PATH = "data/nquad/lawsuits.txt"
 class DgraphCreator(Creator):
+    def clean_nquad_file(self):
+        with open(NQUAD_PATH, 'w'):
+            print("Cleaning file at", NQUAD_PATH)
+
+
     def write_nquads(self, amount = 500000):
-        print("Writting nquads at", NQUAD_PATH)
-        with open(NQUAD_PATH, 'w') as f:
+        with open(NQUAD_PATH, 'a') as f:
             nquads = "\n".join(self.create_nquad(amount))
             f.write(nquads)
 
 
     def create_nquad(self, amount = 500000):
-        nquads = []
-        for lawsuit_number in self.lawsuits_numbers[:amount]:
-            related_nquads = [
-                get_nquad(lawsuit_number,"number",lawsuit_number)
-            ]
+        self.clean_nquad_file()
+        for lawsuit_batch in list_batch(self.lawsuits_numbers, amount):
+            nquads = []
+            for lawsuit_number in lawsuit_batch:
+                related_nquads = [
+                    get_nquad(lawsuit_number,"number",lawsuit_number)
+                ]
+                judgeNquad = self.get_related_nquads(lawsuit_number, random.choice(self.judges))
+                related_nquads.extend(judgeNquad)
+                kindNquad = self.get_related_nquads(lawsuit_number, random.choice(self.kinds))
+                related_nquads.extend(kindNquad)
 
-            judgeNquad = self.get_related_nquads(lawsuit_number, random.choice(self.judges))
-            related_nquads.extend(judgeNquad)
-            kindNquad = self.get_related_nquads(lawsuit_number, random.choice(self.kinds))
-            related_nquads.extend(kindNquad)
+                for i in range(random.randint(0, MAX_LAWYER_PER_LAWSUIT)):
+                    related_nquads.extend(
+                        self.get_related_nquads(lawsuit_number, random.choice(self.lawyers))
+                    )
 
-            for i in range(random.randint(0, MAX_LAWYER_PER_LAWSUIT)):
-                related_nquads.extend(
-                    self.get_related_nquads(lawsuit_number, random.choice(self.lawyers))
-                )
-
-            for i in range(random.randint(0, MAX_PERSON_PER_LAWSUIT)):
-                related_nquads.extend(
-                    self.get_related_nquads(lawsuit_number, random.choice(self.related_people))
-                )
-            nquads.extend(related_nquads)
-        return nquads
+                for i in range(random.randint(0, MAX_PERSON_PER_LAWSUIT)):
+                    related_nquads.extend(
+                        self.get_related_nquads(lawsuit_number, random.choice(self.related_people))
+                    )
+                nquads.extend(related_nquads)
+            self.write_nquads(nquads)
 
 
     def get_related_nquads(self, lawsuit_number, model):
