@@ -1,4 +1,5 @@
 from modules.relatedModels import load_dataset
+from modules.models.models import *
 
 MAX_LAWYER_PER_LAWSUIT = 3
 MAX_PERSON_PER_LAWSUIT = 4
