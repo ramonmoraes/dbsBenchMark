@@ -7,7 +7,7 @@ class BenchMark:
 
     def start(self):
         self.create_dbs()
-        self.insert_datas()
+        self.insert_data()
         self.make_queries()
         self.compare_results()
 
