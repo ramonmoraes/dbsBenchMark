@@ -54,7 +54,7 @@ class SqlOperations:
             cursor.execute(command)
         print("[Done]")
 
-    def load_basic_data(self, tables = ["kindTable", "judgeTable", "personTable"]):
+    def load_data(self, tables = ["kindTable", "judgeTable", "personTable"]):
         cursor = connection.cursor()
         path = "data/csv/{table_name}.csv"
         command_template = """
@@ -80,14 +80,9 @@ class SqlOperations:
                 path=table_path,
                 columns=columns
             )
-            print(command)The settings might not be optimal.
+            print(command)
             cursor.execute(command)
+
         self.print_cursor(cursor)
         connection.commit()
         print("[Done]")
-
-
-ops = SqlOperations()
-# ops.recreate_database()
-# ops.create_tables()
-# ops.load_basic_data(["lawsuitTable"])
