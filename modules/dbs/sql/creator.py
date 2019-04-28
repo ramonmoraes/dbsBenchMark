@@ -76,8 +76,9 @@ class CsvCreator(Creator):
             self.write_csv(lawsuit_path, related_lawsuits)
 
     def create_related_csv(self):
-        print("Writting lawsuit csv")
         self.create_lawsuit_csv()
+        self.create_one_to_many_lawsuitlawyer()
+        self.create_one_to_many_lawsuitperson()
 
     def create_one_to_many_lawsuitlawyer(self):
         lawsuits_amount = self._meta_data.get('sizes').get("lawsuits_numbers")
@@ -112,7 +113,6 @@ class CsvCreator(Creator):
         self.write_csv(lawsuitlawyerTable_path, data_list)
 
 
-
-# CsvCreator().create_related_csv()
-CsvCreator().create_one_to_many_lawsuitlawyer()
-# CsvCreator().create_one_to_many_lawsuitperson()
+creator = CsvCreator()
+creator.create_basic_csv()
+# creator.create_related_csv()
