@@ -2,43 +2,13 @@ import csv
 import random
 
 from modules.relatedModels import get_related_model, load_dataset
+from modules.dbs.creator import Creator,MAX_LAWYER_PER_LAWSUIT, MAX_PERSON_PER_LAWSUIT, list_batch
 from modules.dbs.sql.tableCreator import get_table_name, TableCreator
 from modules.dbs.sql.insertData import create_query
 from modules.models.models import *
 from itertools import islice, chain
 
-MAX_LAWYER_PER_LAWSUIT = 3
-MAX_PERSON_PER_LAWSUIT = 4
-
-def list_batch(iterable, n=10000):
-    l = len(iterable)
-    for ndx in range(0, l, n):
-        yield iterable[ndx : min(ndx + n, l)]
-
-
 CSV_PATH = "data/csv"
-
-
-class Creator:
-    def __init__(self):
-        data = load_dataset()
-        self.related_people = list(
-            map(lambda n: Person({"name": n}), data.get("related_peoples"))
-        )
-        self.lawyers = list(map(lambda n: Lawyer({"name": n}), data.get("lawyers")))
-        self.judges = list(map(lambda n: Judge({"name": n}), data.get("judges")))
-        self.kinds = list(map(lambda n: Kind({"name": n}), data.get("kinds")))
-        self.lawsuits_numbers = data.get("lawsuits")
-        self._meta_data = {
-            "sizes": {
-                "lawsuits_numbers": len(self.lawsuits_numbers),
-                "related_people": len(self.related_people),
-                "lawyers": len(self.lawyers),
-                "judges": len(self.judges),
-                "kinds": len(self.kinds),
-            }
-        }
-
 
 class CsvCreator(Creator):
     def create_basic_csv(self):
