@@ -19,10 +19,17 @@ def get_nquad(subject, predicate, obj):
     )
 
 
+NQUAD_PATH = "data/nquad/lawsuits.txt"
 class DgraphCreator(Creator):
-    def create_nquad(self):
+    def write_nquads(self, amount = 500000):
+        print("Writting nquads at", NQUAD_PATH)
+        with open(NQUAD_PATH, 'w') as f:
+            f.writelines("\n".join(self.create_nquad(amount)))
+
+
+    def create_nquad(self, amount = 500000):
         nquads = []
-        for lawsuit_number in self.lawsuits_numbers[:1]:
+        for lawsuit_number in self.lawsuits_numbers[:amount]:
             related_nquads = [
                 get_nquad(lawsuit_number,"number",lawsuit_number)
             ]
