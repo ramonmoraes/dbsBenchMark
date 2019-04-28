@@ -25,7 +25,7 @@ class BenchMark:
 
     def compare_results(self):
         print(
-            self.sql_results
+            self.sql_results,
             self.dgraph_results
         )
 
