@@ -1,5 +1,5 @@
-# import modules.dbs.sql.creator
-import modules.dbs.sql.operations
+from modules.benchmark import BenchMark
 
-ops = SqlOperations()
-ops.load_data(["lawyerTable", "lawsuitlawyerTable"])
+# benchmark = BenchMark()
+# benchmark.create_mysql_db()
+# benchmark.insert_mysql_data()
