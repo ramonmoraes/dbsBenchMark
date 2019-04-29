@@ -26,13 +26,14 @@ class DgraphCreator(Creator):
             print("Cleaning file at", NQUAD_PATH)
 
 
-    def write_nquads(self, amount = 500000):
+    def write_nquads(self, nquads,  amount):
+        print("Writting {} relateds lawsuits".format(amount))
         with open(NQUAD_PATH, 'a') as f:
-            nquads = "\n".join(self.create_nquad(amount))
+            nquads = "\n".join(nquads)
             f.write(nquads)
 
 
-    def create_nquad(self, amount = 500000):
+    def create_nquad(self, amount = 50):
         self.clean_nquad_file()
         for lawsuit_batch in list_batch(self.lawsuits_numbers, amount):
             nquads = []
@@ -55,7 +56,7 @@ class DgraphCreator(Creator):
                         self.get_related_nquads(lawsuit_number, random.choice(self.related_people))
                     )
                 nquads.extend(related_nquads)
-            self.write_nquads(nquads)
+            self.write_nquads(nquads, amount)
 
 
     def get_related_nquads(self, lawsuit_number, model):
