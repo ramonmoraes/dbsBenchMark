@@ -6,7 +6,7 @@
 from modules.dbs.dgraph.creator import DgraphCreator
 c = DgraphCreator()
 
-c.write_nquads()
+c.create_nquad()
 
 # from modules.dbs.dgraph.operations import DgraphOperation
 
