@@ -9,7 +9,7 @@ def get_nquad(subject, predicate, obj):
     if isinstance(obj, bool):
         obj = str(obj).lower()
 
-    obj = re.sub("\.|\-| ", "", obj)
+    subject = re.sub("\.|\-| ", "", subject)
     obj = "\"{}\"".format(obj)
 
     return NQUAD_TEMPLATE.format(
@@ -33,7 +33,7 @@ class DgraphCreator(Creator):
             f.write(nquads)
 
 
-    def create_nquad(self, amount = 50):
+    def create_nquad(self, amount = 500000):
         self.clean_nquad_file()
         for lawsuit_batch in list_batch(self.lawsuits_numbers, amount):
             nquads = []
@@ -57,7 +57,7 @@ class DgraphCreator(Creator):
                     )
                 nquads.extend(related_nquads)
             self.write_nquads(nquads, amount)
-
+        print("[DONE]")
 
     def get_related_nquads(self, lawsuit_number, model):
         model_nquad = self.model_to_nquad(model)
