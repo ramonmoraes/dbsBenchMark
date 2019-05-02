@@ -44,7 +44,6 @@ class DgraphCreator(Creator):
                 related_nquads = [
                     get_nquad(lawsuit_number,"number",lawsuit_number)
                 ]
-                import pdb; pdb.set_trace()
                 judgeNquad = self.get_related_nquads(lawsuit_number, random.choice(self.judges))
                 related_nquads.extend(judgeNquad)
                 kindNquad = self.get_related_nquads(lawsuit_number, random.choice(self.kinds))
