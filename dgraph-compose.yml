@@ -13,6 +13,8 @@ services:
           - 6080:6080
         restart: on-failure
         command: dgraph zero --my=zero:5080
+        volumes:
+        - ./data:/dgraph/data
     server:
         image: dgraph/dgraph:latest
         volumes:
