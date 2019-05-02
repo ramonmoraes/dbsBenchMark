@@ -16,7 +16,7 @@ DEAFAULT_INDEXS = """
 """
 
 
-class DgraphOperation:
+class DgraphOperations:
     def __init__(self):
         self.client = pydgraph.DgraphClient(pydgraph.DgraphClientStub("localhost:9080"))
 
