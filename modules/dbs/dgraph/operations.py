@@ -1,4 +1,5 @@
 import pydgraph
+import os
 
 DEAFAULT_INDEXS = """
  is_lawyer: bool .
@@ -26,3 +27,8 @@ class DgraphOperation:
     def create_index(self):
         op = pydgraph.Operation(schema=DEAFAULT_INDEXS)
         self.client.alter(op)
+
+    def load_data(self):
+        print("Loading dgraph via os.system")
+        os.system("dgraphId=$(docker ps | grep zero | awk '{print $1}')")
+        os.system("docker exec $dgraphId dgraph live -r data/dgraph/nquad.txt")

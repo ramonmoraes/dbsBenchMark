@@ -39,3 +39,6 @@ class BenchMark:
 
     def insert_mysql_data(self):
         self.sqlOps.load_data()
+
+    def insert_dgraph_data(self):
+        self.dgraphOps.load_data()
