@@ -29,6 +29,5 @@ class DgraphOperations:
         self.client.alter(op)
 
     def load_data(self):
-        print("Loading dgraph via os.system")
-        os.system("dgraphId=$(docker ps | grep zero | awk '{print $1}')")
-        os.system("docker exec $dgraphId dgraph live -r data/dgraph/nquad.txt")
+        print("[Loading dgraph via os.system]")
+        print("Executing script/liveLoad.sh")
