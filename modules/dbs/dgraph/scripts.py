@@ -5,7 +5,6 @@ from modules.models.models import (
     Kind,
     CourtSection,
     Disctrict,
-    Subject,
     Lawsuit,
 )
 from modules.dbs.dgraph.schemaCreator import SchemaCreator
@@ -20,7 +19,6 @@ def create_schema():
             Kind(),
             CourtSection(),
             Disctrict(),
-            Subject(),
             Lawsuit(),
         ]
     )
