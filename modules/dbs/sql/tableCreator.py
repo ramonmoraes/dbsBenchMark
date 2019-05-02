@@ -1,11 +1,4 @@
-from modules.models.models import (
-    Person,
-    Lawyer,
-    Judge,
-    Kind,
-    CourtSection,
-    Disctrict,
-)
+from modules.models.models import Person, Lawyer, Judge, Kind, CourtSection, Disctrict
 
 TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
     id INT AUTO_INCREMENT,
@@ -46,6 +39,7 @@ class TableCreator:
         if val == type(True):
             return "boolean"
         raise Exception("Complex table", raw)
+
 
 def create_simple_tables():
     tc = TableCreator(

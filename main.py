@@ -4,6 +4,7 @@
 # benchmark.insert_mysql_data()
 
 from modules.dbs.dgraph.creator import DgraphCreator
+
 c = DgraphCreator()
 
 c.create_nquad()

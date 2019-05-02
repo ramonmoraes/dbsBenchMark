@@ -1,8 +1,9 @@
 from modules.dbs.sql.operations import SqlOperations
 from modules.dbs.dgraph.operations import DgraphOperations
 
+
 class BenchMark:
-    def __init__(self, amount = 1):
+    def __init__(self, amount=1):
         self.amount = amount
         self.sqlOps = SqlOperations()
         self.dgraphOps = DgraphOperations()
@@ -26,10 +27,7 @@ class BenchMark:
         self.dgraph_results = self.make_dgraph_queries()
 
     def compare_results(self):
-        print(
-            self.sql_results,
-            self.dgraph_results
-        )
+        print(self.sql_results, self.dgraph_results)
 
     def create_mysql_db(self):
         self.sqlOps.recreate_database()

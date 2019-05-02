@@ -2,13 +2,19 @@ import csv
 import random
 
 from modules.relatedModels import get_related_model, load_dataset
-from modules.dbs.creator import Creator,MAX_LAWYER_PER_LAWSUIT, MAX_PERSON_PER_LAWSUIT, list_batch
+from modules.dbs.creator import (
+    Creator,
+    MAX_LAWYER_PER_LAWSUIT,
+    MAX_PERSON_PER_LAWSUIT,
+    list_batch,
+)
 from modules.dbs.sql.tableCreator import get_table_name, TableCreator
 from modules.dbs.sql.insertData import create_query
 from modules.models.models import *
 from itertools import islice, chain
 
 CSV_PATH = "data/csv"
+
 
 class CsvCreator(Creator):
     def create_basic_csv(self):
@@ -51,33 +57,27 @@ class CsvCreator(Creator):
         self.create_one_to_many_lawsuitperson()
 
     def create_one_to_many_lawsuitlawyer(self):
-        lawsuits_amount = self._meta_data.get('sizes').get("lawsuits_numbers")
-        lawyers_max_id = self._meta_data.get('sizes').get("lawyers")
+        lawsuits_amount = self._meta_data.get("sizes").get("lawsuits_numbers")
+        lawyers_max_id = self._meta_data.get("sizes").get("lawyers")
         lawsuitlawyerTable_path = "data/csv/lawsuitlawyerTable.csv"
         data_list = []
         for lawsuit_id in range(lawsuits_amount):
             lawyer_amount = random.randint(1, MAX_LAWYER_PER_LAWSUIT)
             for i in range(lawyer_amount):
                 lawyers_id = random.randint(0, lawyers_max_id)
-                data = {
-                    "lawsuit_id": lawsuit_id,
-                    "lawyer_id": lawyers_id
-                }
+                data = {"lawsuit_id": lawsuit_id, "lawyer_id": lawyers_id}
                 data_list.append(data)
         self.write_csv(lawsuitlawyerTable_path, data_list)
 
     def create_one_to_many_lawsuitperson(self):
-        lawsuits_amount = self._meta_data.get('sizes').get("lawsuits_numbers")
-        related_people = self._meta_data.get('sizes').get("related_people")
+        lawsuits_amount = self._meta_data.get("sizes").get("lawsuits_numbers")
+        related_people = self._meta_data.get("sizes").get("related_people")
         lawsuitlawyerTable_path = "data/csv/lawsuitpersonTable.csv"
         data_list = []
         for lawsuit_id in range(lawsuits_amount):
             lawyer_amount = random.randint(0, MAX_PERSON_PER_LAWSUIT)
             for i in range(lawyer_amount):
                 person_id = random.randint(0, related_people)
-                data = {
-                    "lawsuit_id": lawsuit_id,
-                    "person_id": person_id
-                }
+                data = {"lawsuit_id": lawsuit_id, "person_id": person_id}
                 data_list.append(data)
         self.write_csv(lawsuitlawyerTable_path, data_list)

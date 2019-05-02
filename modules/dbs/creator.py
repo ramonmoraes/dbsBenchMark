@@ -4,10 +4,12 @@ from modules.models.models import *
 MAX_LAWYER_PER_LAWSUIT = 3
 MAX_PERSON_PER_LAWSUIT = 4
 
+
 def list_batch(iterable, n=10000):
     l = len(iterable)
     for ndx in range(0, l, n):
         yield iterable[ndx : min(ndx + n, l)]
+
 
 class Creator:
     def __init__(self):

@@ -14,15 +14,14 @@ DEAFAULT_INDEXS = """
  is_disctrict: bool .
 """
 
+
 class DgraphOperation:
     def __init__(self):
-        self.client = pydgraph.DgraphClient(pydgraph.DgraphClientStub('localhost:9080'))
-
+        self.client = pydgraph.DgraphClient(pydgraph.DgraphClientStub("localhost:9080"))
 
     def drop_all(self):
         op = pydgraph.Operation(drop_all=True)
         self.client.alter(op)
-
 
     def create_index(self):
         op = pydgraph.Operation(schema=DEAFAULT_INDEXS)

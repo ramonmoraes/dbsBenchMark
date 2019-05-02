@@ -54,7 +54,18 @@ class SqlOperations:
             cursor.execute(command)
         print("[Done]")
 
-    def load_data(self, tables = ["kindTable", "judgeTable", "personTable","lawsuitTable", "lawyerTable", "lawsuitlawyerTable", "lawsuitpersonTable"]):
+    def load_data(
+        self,
+        tables=[
+            "kindTable",
+            "judgeTable",
+            "personTable",
+            "lawsuitTable",
+            "lawyerTable",
+            "lawsuitlawyerTable",
+            "lawsuitpersonTable",
+        ],
+    ):
         cursor = connection.cursor()
         path = "data/csv/{table_name}.csv"
         command_template = """
@@ -71,14 +82,12 @@ class SqlOperations:
             table_path = path.format(table_name=table)
             columns = ""
             print("Getting columns from", table_path)
-            with open(table_path, 'r') as f:
+            with open(table_path, "r") as f:
                 columns = f.readline().strip()
 
             print("Loading into table:", table)
             command = command_template.format(
-                table_name=table,
-                path=table_path,
-                columns=columns
+                table_name=table, path=table_path, columns=columns
             )
             print(command)
             cursor.execute(command)
