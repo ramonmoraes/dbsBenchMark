@@ -21,10 +21,12 @@ class DgraphOperations:
         self.client = pydgraph.DgraphClient(pydgraph.DgraphClientStub("localhost:9080"))
 
     def drop_all(self):
+        print("Dropping dgraph")
         op = pydgraph.Operation(drop_all=True)
         self.client.alter(op)
 
     def create_index(self):
+        print("Creating dgraph's schema")
         op = pydgraph.Operation(schema=DEAFAULT_INDEXS)
         self.client.alter(op)
 
