@@ -22,7 +22,13 @@ class BenchMark:
         self.create_dgraph_db()
 
     def create_data(self):
+        self.create_dgraph_data()
+        self.create_mysql_data()
+
+    def create_dgraph_data(self):
         DgraphCreator().create_nquad()
+
+    def create_mysql_data(self):
         CsvCreator().create_related_csv()
 
     def insert_data(self):
