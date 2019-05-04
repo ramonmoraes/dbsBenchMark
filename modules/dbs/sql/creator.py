@@ -52,6 +52,7 @@ class CsvCreator(Creator):
             self.write_csv(lawsuit_path, related_lawsuits)
 
     def create_related_csv(self):
+        self.create_basic_csv()
         self.create_lawsuit_csv()
         self.create_one_to_many_lawsuitlawyer()
         self.create_one_to_many_lawsuitperson()
