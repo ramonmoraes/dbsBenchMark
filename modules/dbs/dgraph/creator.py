@@ -13,10 +13,10 @@ NQUAD_TEMPLATE = "_:{subject} <{predicate}> {object} ."
 
 def get_nquad(subject, predicate, obj):
     subject_sufix_regex = re.compile("_\:.*")
-    if isinstance(obj, str) and not subject_sufix_regex.match(obj):
-        obj = '"{}"'.format(obj)
     if isinstance(obj, bool):
         obj = str(obj).lower()
+    if isinstance(obj, str) and not subject_sufix_regex.match(obj):
+        obj = '"{}"'.format(obj)
 
     subject = re.sub("\.|\-| ", "", subject)
 
@@ -38,6 +38,7 @@ class DgraphCreator(Creator):
         with open(NQUAD_PATH, "a") as f:
             nquads = "\n".join(nquads)
             f.write(nquads)
+            f.write("\n")
 
     def create_nquad(self, amount=500000):
         self.clean_nquad_file()
