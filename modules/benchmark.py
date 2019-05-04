@@ -1,5 +1,7 @@
 from modules.dbs.sql.operations import SqlOperations
 from modules.dbs.dgraph.operations import DgraphOperations
+from modules.dbs.dgraph.creator import DgraphCreator
+from modules.dbs.sql.creator import CsvCreator
 
 
 class BenchMark:
@@ -10,9 +12,14 @@ class BenchMark:
 
     def start(self):
         self.create_dbs()
+        self.create_data()
         self.insert_data()
         self.make_queries()
         self.compare_results()
+
+    def create_data(self):
+        DgraphCreator().create_nquad()
+        CsvCreator().create_related_csv()
 
     def create_dbs(self):
         self.create_mysql_db()
