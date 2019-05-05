@@ -4,6 +4,17 @@ from modules.dbs.dgraph.creator import DgraphCreator
 from modules.dbs.sql.creator import CsvCreator
 
 
+"""
+Queries to be made
+
+1 - Find the judge related with more lawsuits
+2 - Find the top 5 relations judge x kind
+3 - Find the top relations judge x lawyers
+
+Running each querie 4 times
+"""
+
+
 class BenchMark:
     def __init__(self, amount=1):
         self.amount = amount
