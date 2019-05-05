@@ -12,6 +12,9 @@ DEAFAULT_INDEXS = """
  is_judge: bool .
  is_lawsuit: bool .
  is_disctrict: bool .
+ judge: uid @count @reverse .
+ kind: uid @count @reverse .
+ person: uid @count @reverse .
 """
 
 
