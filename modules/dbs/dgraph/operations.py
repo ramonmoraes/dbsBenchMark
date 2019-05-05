@@ -5,11 +5,10 @@ DEAFAULT_INDEXS = """
  is_lawyer: bool .
  is_courtsection: bool .
  is_kind: bool .
- estate: string .
  is_person: bool .
  is_subject: bool .
- last_name: string .
- name: string .
+ last_name: string @index(exact) .
+ name: string @index(exact) .
  is_judge: bool .
  is_lawsuit: bool .
  is_disctrict: bool .
@@ -26,7 +25,7 @@ class DgraphOperations:
         self.client.alter(op)
 
     def create_index(self):
-        print("Creating dgraph's schema")
+        print("Creating dgraph's schema with indexes: ", DEAFAULT_INDEXS)
         op = pydgraph.Operation(schema=DEAFAULT_INDEXS)
         self.client.alter(op)
 
