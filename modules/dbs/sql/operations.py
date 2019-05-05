@@ -2,13 +2,25 @@ from modules.dbs.sql.connection import connection
 from os.path import abspath
 
 
+DEFAULT_TABLES = [
+            "kindTable",
+            "judgeTable",
+            "personTable",
+            "lawsuitTable",
+            "lawyerTable",
+            "lawsuitlawyerTable",
+            "lawsuitpersonTable",
+        ]
 class SqlOperations:
+    def get_cursor(self):
+        return connection.cursor()
+
     def print_cursor(self, cursor):
         for res in cursor.fetchall():
             print(res)
 
     def recreate_database(self):
-        cursor = connection.cursor()
+        cursor = self.connection.cursor()
         commands = """SET FOREIGN_KEY_CHECKS = 0;
     SET @tables = NULL;
     SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
@@ -50,23 +62,15 @@ class SqlOperations:
         print("[Creating sql tables]")
         for command in commands:
             print(".", end="")
-            cursor = connection.cursor()
+            cursor = self.connection.cursor()
             cursor.execute(command)
         print("[Done]")
 
     def load_data(
         self,
-        tables=[
-            "kindTable",
-            "judgeTable",
-            "personTable",
-            "lawsuitTable",
-            "lawyerTable",
-            "lawsuitlawyerTable",
-            "lawsuitpersonTable",
-        ],
+        tables=DEFAULT_TABLES,
     ):
-        cursor = connection.cursor()
+        cursor = self.connection.cursor()
         path = "data/csv/{table_name}.csv"
         command_template = """
     LOAD DATA LOCAL INFILE "{path}"
