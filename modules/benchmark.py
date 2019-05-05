@@ -7,7 +7,6 @@ from modules.dbs.dgraph.creator import DgraphCreator
 from modules.dbs.dgraph.queries import DgraphQueries
 
 
-
 class BenchMark:
     def __init__(self, amount=1):
         self.amount = amount

@@ -1,5 +1,6 @@
 from modules.dbs.queries import Queries
 
+
 class SqlQueries(Queries):
     def __init__(self, cursor):
         self.cursor = cursor

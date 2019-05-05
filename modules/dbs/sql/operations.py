@@ -3,14 +3,16 @@ from os.path import abspath
 
 
 DEFAULT_TABLES = [
-            "kindTable",
-            "judgeTable",
-            "personTable",
-            "lawsuitTable",
-            "lawyerTable",
-            "lawsuitlawyerTable",
-            "lawsuitpersonTable",
-        ]
+    "kindTable",
+    "judgeTable",
+    "personTable",
+    "lawsuitTable",
+    "lawyerTable",
+    "lawsuitlawyerTable",
+    "lawsuitpersonTable",
+]
+
+
 class SqlOperations:
     def get_cursor(self):
         return connection.cursor()
@@ -66,10 +68,7 @@ class SqlOperations:
             cursor.execute(command)
         print("[Done]")
 
-    def load_data(
-        self,
-        tables=DEFAULT_TABLES,
-    ):
+    def load_data(self, tables=DEFAULT_TABLES):
         cursor = self.connection.cursor()
         path = "data/csv/{table_name}.csv"
         command_template = """

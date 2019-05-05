@@ -8,6 +8,7 @@ Queries to be made
 Running each querie 4 times
 """
 
+
 class Queries:
     def find_judge_with_more_lawsuits(self):
         raise Exception("Method have to be implemented")

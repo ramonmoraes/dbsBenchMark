@@ -24,7 +24,6 @@ class DgraphQueries(Queries):
         }"""
         return self.make_query(query)
 
-
     def find_top_five_relations_judge_kind(self):
         # clear()
 
