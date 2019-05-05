@@ -1,7 +1,10 @@
+from modules.dbs.sql.creator import CsvCreator
 from modules.dbs.sql.operations import SqlOperations
+from modules.dbs.sql.queries import SqlQueries
+
 from modules.dbs.dgraph.operations import DgraphOperations
 from modules.dbs.dgraph.creator import DgraphCreator
-from modules.dbs.sql.creator import CsvCreator
+from modules.dbs.dgraph.queries import DgraphQueries
 
 
 
@@ -9,7 +12,9 @@ class BenchMark:
     def __init__(self, amount=1):
         self.amount = amount
         self.sqlOps = SqlOperations()
+        self.SqlQueries = SqlQueries(self.sqlOps.get_cursor())
         self.dgraphOps = DgraphOperations()
+        self.dgraphQueries = DgraphQueries(self.dgraphOps.client)
 
     def start(self):
         self.create_dbs()

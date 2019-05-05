@@ -1,8 +1,8 @@
 from modules.dbs.queries import Queries
 
 class DgraphQueries(Queries):
-    def __init__(self, connection):
-        self.connection = connection
+    def __init__(self, client):
+        self.client = client
 
     def find_judge_with_more_lawsuits(self):
         pass
