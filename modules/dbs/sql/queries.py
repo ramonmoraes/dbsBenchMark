@@ -6,7 +6,14 @@ class SqlQueries(Queries):
         self.cursor = cursor
 
     def find_judge_with_more_lawsuits(self):
-        pass
+        query = """
+        SELECT l.judge_id, count(l.judge_id), j.name
+        FROM lawsuitTable as l
+        left join judgeTable as j on j.id = l.judge_id
+        group by judge_id
+        limit 5
+        """
+        return self.cursor.execute(query)
 
     def find_top_five_relations_judge_kind(self):
         pass
@@ -27,5 +34,6 @@ class SqlQueries(Queries):
         on num.id = ll.person_id
         LEFT JOIN lawyerTable as per
         on per.id = lp.person_id
-        """
-        pass
+        """Error Code: 1140. In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'db.num.number'; this is incompatible with sql_mode=only_full_group_by
+
+        return self.cursor.execute(query)
