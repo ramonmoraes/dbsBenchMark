@@ -12,7 +12,7 @@ class BenchMark:
     def __init__(self, amount=1):
         self.amount = amount
         self.sqlOps = SqlOperations()
-        self.SqlQueries = SqlQueries(self.sqlOps.get_cursor())
+        self.sqlQueries = SqlQueries(self.sqlOps.get_cursor())
         self.dgraphOps = DgraphOperations()
         self.dgraphQueries = DgraphQueries(self.dgraphOps.client)
 
@@ -42,8 +42,12 @@ class BenchMark:
         self.insert_dgraph_data()
 
     def make_queries(self):
-        self.sql_results = self.make_mysql_queries()
-        self.dgraph_results = self.make_dgraph_queries()
+        for queryMaker in [self.dgraphQueries, self.sqlQueries]:
+            queryMaker.find_judge_with_more_lawsuits()
+            queryMaker.find_top_five_relations_judge_kind()
+            queryMaker.find_top_five_relations_judge_lawyers()
+        # self.sql_results = self.make_mysql_queries()
+        # self.dgraph_results = self.make_dgraph_queries()
 
     def compare_results(self):
         print(self.sql_results, self.dgraph_results)
