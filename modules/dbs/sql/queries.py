@@ -10,5 +10,5 @@ class SqlQueries(Queries):
     def find_top_five_relations_judge_kind(self):
         pass
 
-    def find_top_five_relations_judge_lawyers(self):
+    def find_every_related_data(self):
         pass
