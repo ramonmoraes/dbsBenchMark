@@ -8,6 +8,8 @@ from modules.dbs.dgraph.queries import DgraphQueries
 
 from modules.results_writter import ResultWritter
 
+QUERY_REPEAT_AMOUNT = 10
+
 class BenchMark:
     def __init__(self, amount=1):
         self.amount = amount
@@ -42,12 +44,13 @@ class BenchMark:
         self.insert_dgraph_data()
 
     def make_queries(self):
-        for queryMaker in [self.dgraphQueries, self.sqlQueries]:
-            class_name = queryMaker.__class__.__name__
-            writter = ResultWritter(class_name)
-            writter.write_result("find_every_related_data", queryMaker.find_every_related_data)
-            writter.write_result("find_judge_with_more_lawsuits", queryMaker.find_judge_with_more_lawsuits)
-            writter.write_result("find_top_five_relations_judge_kind", queryMaker.find_top_five_relations_judge_kind)
+        for i in range(QUERY_REPEAT_AMOUNT):
+            for queryMaker in [self.dgraphQueries, self.sqlQueries]:
+                class_name = queryMaker.__class__.__name__
+                writter = ResultWritter(class_name)
+                writter.write_result("find_every_related_data", queryMaker.find_every_related_data)
+                writter.write_result("find_judge_with_more_lawsuits", queryMaker.find_judge_with_more_lawsuits)
+                writter.write_result("find_top_five_relations_judge_kind", queryMaker.find_top_five_relations_judge_kind)
 
 
     def compare_results(self):
