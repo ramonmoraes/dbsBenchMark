@@ -1,0 +1,22 @@
+| Class | Function | Time(s) |
+|-|-|-|
+| DgraphQueries | find_judge_with_more_lawsuits | 0.05097580000074231 |
+| SqlQueries | find_judge_with_more_lawsuits | 7.760713434000536 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.045283300999471976 |
+| SqlQueries | find_judge_with_more_lawsuits | 7.547655921999649 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.04235989999961021 |
+| SqlQueries | find_judge_with_more_lawsuits | 7.581317520000084 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.04992852800023684 |
+| SqlQueries | find_judge_with_more_lawsuits | 7.513972497000395 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.03354196599957504 |
+| SqlQueries | find_judge_with_more_lawsuits | 7.533673145000648 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.042203689999951166 |
+| SqlQueries | find_judge_with_more_lawsuits | 8.064598265000313 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.04204884199953085 |
+| SqlQueries | find_judge_with_more_lawsuits | 8.066438543999539 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.35558345899971755 |
+| SqlQueries | find_judge_with_more_lawsuits | 8.048033684000075 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.05077213299955474 |
+| SqlQueries | find_judge_with_more_lawsuits | 8.050532596999801 |
+| DgraphQueries | find_judge_with_more_lawsuits | 0.04420738200042251 |
+| SqlQueries | find_judge_with_more_lawsuits | 8.071480081000118 |

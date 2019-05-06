@@ -1,0 +1,22 @@
+| Class | Function | Time(s) |
+|-|-|-|
+| DgraphQueries | find_every_related_data | 0.049953871999605326 |
+| SqlQueries | find_every_related_data | 0.027357922999726725 |
+| DgraphQueries | find_every_related_data | 0.04881040399959602 |
+| SqlQueries | find_every_related_data | 0.02474587199958478 |
+| DgraphQueries | find_every_related_data | 0.8849460949995773 |
+| SqlQueries | find_every_related_data | 0.026476448999346758 |
+| DgraphQueries | find_every_related_data | 0.06671289399946545 |
+| SqlQueries | find_every_related_data | 0.02692327899967495 |
+| DgraphQueries | find_every_related_data | 0.05063032199996087 |
+| SqlQueries | find_every_related_data | 0.010065080000458693 |
+| DgraphQueries | find_every_related_data | 0.2480767779998132 |
+| SqlQueries | find_every_related_data | 0.02178924600048049 |
+| DgraphQueries | find_every_related_data | 0.8412145629999941 |
+| SqlQueries | find_every_related_data | 0.028315509000094607 |
+| DgraphQueries | find_every_related_data | 1.0856251969998993 |
+| SqlQueries | find_every_related_data | 0.016788878000625118 |
+| DgraphQueries | find_every_related_data | 0.7370062540003346 |
+| SqlQueries | find_every_related_data | 0.021208316999945964 |
+| DgraphQueries | find_every_related_data | 0.22712040700025682 |
+| SqlQueries | find_every_related_data | 0.023479970999687794 |

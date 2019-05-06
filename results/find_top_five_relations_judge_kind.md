@@ -1,0 +1,22 @@
+| Class | Function | Time(s) |
+|-|-|-|
+| DgraphQueries | find_top_five_relations_judge_kind | 4.508000529312994e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.463999979023356e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.494000000297092e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.2600003174156882e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.7670002964441665e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.6829999367473647e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.899000719480682e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.7900001694215462e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 8.910001270123757e-07 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.1829997674794868e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 1.9769995560636744e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.4990000636316836e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.3780003175488673e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.7000002117129043e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 1.8379996618023142e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.4770002962904982e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.6279994926881045e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.4810002539888956e-06 |
+| DgraphQueries | find_top_five_relations_judge_kind | 2.766000761766918e-06 |
+| SqlQueries | find_top_five_relations_judge_kind | 1.407000127073843e-06 |
