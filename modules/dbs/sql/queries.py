@@ -7,10 +7,11 @@ class SqlQueries(Queries):
 
     def find_judge_with_more_lawsuits(self):
         query = """
-        SELECT l.judge_id, count(l.judge_id), j.name
-        FROM lawsuitTable as l
-        left join judgeTable as j on j.id = l.judge_id
-        group by judge_id
+        SELECT COUNT(l.judge_id), j.name
+        FROM lawsuitTable AS l
+        LEFT JOIN judgeTable AS j on j.id = l.judge_id
+        GROUP BY l.judge_id, j.name
+        ORDER BY COUNT(l.judge_id) DESC
         limit 5
         """
         return self.cursor.execute(query)
@@ -20,20 +21,20 @@ class SqlQueries(Queries):
 
     def find_every_related_data(self):
         query = """
-        SELECT num.number, kin.name, jud.name as "judgeName", law.name as "lawyerName", per.name as "personName"
-        FROM lawsuitTable as num
-        LEFT JOIN kindTable as kin
+        SELECT num.number, kin.name, jud.name AS "judgeName", law.name AS "lawyerName", per.name AS "personName"
+        FROM lawsuitTable AS num
+        LEFT JOIN kindTable AS kin
         ON num.kind_id = kin.id
-        LEFT JOIN judgeTable as jud
+        LEFT JOIN judgeTable AS jud
         on jud.id = num.judge_id
-        LEFT JOIN lawsuitlawyerTable as ll
+        LEFT JOIN lawsuitlawyerTable AS ll
         on num.id = ll.lawsuit_id
-        LEFT JOIN lawyerTable as law
+        LEFT JOIN lawyerTable AS law
         on law.id = ll.lawyer_id
-        LEFT JOIN lawsuitpersonTable as lp
-        on num.id = ll.person_id
-        LEFT JOIN lawyerTable as per
+        LEFT JOIN lawsuitpersonTable AS lp
+        on num.id = ll.lawsuit_id
+        LEFT JOIN lawyerTable AS per
         on per.id = lp.person_id
-        """Error Code: 1140. In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'db.num.number'; this is incompatible with sql_mode=only_full_group_by
+        """
 
         return self.cursor.execute(query)
