@@ -35,6 +35,7 @@ class SqlQueries(Queries):
         on num.id = ll.lawsuit_id
         LEFT JOIN lawyerTable AS per
         on per.id = lp.person_id
+        LIMIT 100
         """
 
         return self.cursor.execute(query)

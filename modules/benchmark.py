@@ -42,11 +42,15 @@ class BenchMark:
 
     def make_queries(self):
         for queryMaker in [self.dgraphQueries, self.sqlQueries]:
-            queryMaker.find_every_related_data()
-            queryMaker.find_judge_with_more_lawsuits()
+            class_name = queryMaker.__class__.__name__
+            print("[Making {}]".format(class_name.upper()))
+            print("1- find_every_related_data query")
+            every = queryMaker.find_every_related_data()
+            print("2- find_judge_with_more_lawsuits query")
+            topJudges = queryMaker.find_judge_with_more_lawsuits()
+            print("3- find_top_five_relations_judge_kind query")
             queryMaker.find_top_five_relations_judge_kind()
-        # self.sql_results = self.make_mysql_queries()
-        # self.dgraph_results = self.make_dgraph_queries()
+
 
     def compare_results(self):
         print(self.sql_results, self.dgraph_results)
