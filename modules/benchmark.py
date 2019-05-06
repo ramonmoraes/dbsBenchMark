@@ -6,6 +6,7 @@ from modules.dbs.dgraph.operations import DgraphOperations
 from modules.dbs.dgraph.creator import DgraphCreator
 from modules.dbs.dgraph.queries import DgraphQueries
 
+from modules.results_writter import ResultWritter
 
 class BenchMark:
     def __init__(self, amount=1):
@@ -43,13 +44,10 @@ class BenchMark:
     def make_queries(self):
         for queryMaker in [self.dgraphQueries, self.sqlQueries]:
             class_name = queryMaker.__class__.__name__
-            print("[Making {}]".format(class_name.upper()))
-            print("1- find_every_related_data query")
-            every = queryMaker.find_every_related_data()
-            print("2- find_judge_with_more_lawsuits query")
-            topJudges = queryMaker.find_judge_with_more_lawsuits()
-            print("3- find_top_five_relations_judge_kind query")
-            queryMaker.find_top_five_relations_judge_kind()
+            writter = ResultWritter(class_name)
+            writter.write_result("find_every_related_data", queryMaker.find_every_related_data)
+            writter.write_result("find_judge_with_more_lawsuits", queryMaker.find_judge_with_more_lawsuits)
+            writter.write_result("find_top_five_relations_judge_kind", queryMaker.find_top_five_relations_judge_kind)
 
 
     def compare_results(self):
