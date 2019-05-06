@@ -9,7 +9,8 @@ def clear():
 
 class DgraphQueries(Queries):
     def __init__(self, client):
-        self.client = client
+        # self.client = client
+        self.txn = client.txn()
 
     def find_judge_with_more_lawsuits(self):
         query = """{
@@ -76,8 +77,9 @@ class DgraphQueries(Queries):
         return self.make_query(query)
 
     def make_query(self, query):
-        txn = self.client.txn()
-        try:
-            return txn.query(query)
-        finally:
-            txn.discard()
+        return self.txn.query(query)
+        # txn = self.client.txn()
+        # try:
+        #     return txn.query(query)
+        # finally:
+        #     txn.discard()
