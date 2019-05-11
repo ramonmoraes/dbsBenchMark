@@ -1,0 +1,1 @@
+docker-compose -f dgraph-compose.yml -d up server ratel
