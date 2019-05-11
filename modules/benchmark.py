@@ -1,3 +1,6 @@
+import os
+import time
+
 from modules.dbs.sql.creator import CsvCreator
 from modules.dbs.sql.operations import SqlOperations
 from modules.dbs.sql.queries import SqlQueries
@@ -11,23 +14,38 @@ from modules.results_writter import ResultWritter
 QUERY_REPEAT_AMOUNT = 10
 
 class BenchMark:
-    def __init__(self, amount=1):
+    def __init__(self, amount=2):
         self.amount = amount
-        self.sqlOps = SqlOperations()
-        self.sqlQueries = SqlQueries(self.sqlOps.get_cursor())
-        self.dgraphOps = DgraphOperations()
-        self.dgraphQueries = DgraphQueries(self.dgraphOps.client)
 
     def start(self):
-        self.create_dbs()
-        self.create_data()
-        self.insert_data()
-        self.make_queries()
-        self.compare_results()
+        for _ in range(self.amount):
+            self.pre_scripts()
+            self.configure()
+            self.create_dbs()
+            self.create_data()
+            self.insert_data()
+            self.make_queries()
+            self.compare_results()
+
+    def pre_scripts(self):
+        print("Pre-scripts")
+        print("Dropping all")
+        os.system("./scripts/dropAll.sh")
+        print("Running all")
+        os.system("./scripts/runAll.sh")
+
+    def configure(self):
+        print("Configuring attributes")
+        for _ in range(10):
+            print(".", end=" ")
+            time.sleep(1)
+        self.sqlOps = SqlOperations()
+        self.dgraphOps = DgraphOperations()
+        self.sqlQueries = SqlQueries(self.sqlOps.get_cursor())
+        self.dgraphQueries = DgraphQueries(self.dgraphOps.client)
 
     def create_dbs(self):
         self.create_mysql_db()
-        self.create_dgraph_db()
 
     def create_data(self):
         self.create_dgraph_data()
@@ -60,11 +78,9 @@ class BenchMark:
         self.sqlOps.recreate_database()
         self.sqlOps.create_tables()
 
-    def create_dgraph_db(self):
-        self.dgraphOps.drop_all()
-
     def insert_mysql_data(self):
         self.sqlOps.load_data()
 
     def insert_dgraph_data(self):
         self.dgraphOps.load_data()
+        os.system("./scripts/runServer.sh")
