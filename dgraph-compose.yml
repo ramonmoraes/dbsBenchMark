@@ -3,11 +3,8 @@ services:
     zero:
         image: dgraph/dgraph:v1.0.14
         volumes:
-          - type: volume
-            source: dgraph
-            target: /dgraph
-            volume:
-              nocopy: true
+          - dgraph:/dgraph
+          - ./data:/data
         ports:
           - 5080:5080
           - 6080:6080
@@ -16,11 +13,7 @@ services:
     server:
         image: dgraph/dgraph:v1.0.14
         volumes:
-          - type: volume
-            source: dgraph
-            target: /dgraph
-            volume:
-              nocopy: true
+          - ./data:/data
         ports:
           - 8080:8080
           - 9080:9080
@@ -29,14 +22,9 @@ services:
     ratel:
         image: dgraph/dgraph:v1.0.14
         volumes:
-          - type: volume
-            source: dgraph
-            target: /dgraph
-            volume:
-              nocopy: true
+          - ./data:/data
         ports:
           - 8000:8000
         command: dgraph-ratel
-
 volumes:
   dgraph:
