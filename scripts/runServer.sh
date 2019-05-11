@@ -1,1 +1,1 @@
-docker-compose -f dgraph-compose.yml -d up server ratel
+docker-compose -f dgraph-compose.yml up -d server ratel
