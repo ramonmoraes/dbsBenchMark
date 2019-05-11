@@ -50,7 +50,7 @@ class BenchMark:
                 writter = ResultWritter(class_name)
                 writter.write_result("find_every_related_data", queryMaker.find_every_related_data)
                 writter.write_result("find_judge_with_more_lawsuits", queryMaker.find_judge_with_more_lawsuits)
-                writter.write_result("find_top_five_relations_judge_kind", queryMaker.find_top_five_relations_judge_kind)
+                writter.write_result("find_thousand_lawsuits_numbers", queryMaker.find_thousand_lawsuits_numbers)
 
 
     def compare_results(self):
@@ -62,7 +62,7 @@ class BenchMark:
 
     def create_dgraph_db(self):
         self.dgraphOps.drop_all()
-        self.dgraphOps.create_index()
+        # self.dgraphOps.create_index()
 
     def insert_mysql_data(self):
         self.sqlOps.load_data()
