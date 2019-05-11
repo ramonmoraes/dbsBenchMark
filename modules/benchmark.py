@@ -62,7 +62,6 @@ class BenchMark:
 
     def create_dgraph_db(self):
         self.dgraphOps.drop_all()
-        # self.dgraphOps.create_index()
 
     def insert_mysql_data(self):
         self.sqlOps.load_data()
