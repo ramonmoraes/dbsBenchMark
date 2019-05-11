@@ -26,11 +26,11 @@ class DgraphQueries(Queries):
         return self.make_query(query)
 
     def find_thousand_lawsuits_numbers(self):
-        query = """
+        query = """{
             data(func: has(number), first: 1000) {
                 number
              }
-        """
+        }"""
         return self.make_query(query)
 
     def find_every_related_data(self):
