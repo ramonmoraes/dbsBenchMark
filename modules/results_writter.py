@@ -12,9 +12,8 @@ class ResultWritter:
     def write_result(self, function_name, function):
         elapsed_time = self.get_elapsed_time(function)
         file_path = "{}{}.md".format(RESULT_BASE_PATH, function_name)
-        empty_file =  self.is_empty_file(file_path)
 
-        if empty_file:
+        if self.is_empty_file(file_path):
             self.write_table_header(file_path)
 
         with open(file_path, "a") as f:
