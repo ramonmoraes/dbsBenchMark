@@ -16,8 +16,13 @@ class SqlQueries(Queries):
         """
         return self.cursor.execute(query)
 
-    def find_top_five_relations_judge_kind(self):
-        pass
+    def find_thousand_lawsuits_numbers(self):
+        query = """
+        SELECT number
+        FROM lawsuitTable
+        limit 1000
+        """
+        return self.cursor.execute(query)
 
     def find_every_related_data(self):
         query = """

@@ -25,39 +25,13 @@ class DgraphQueries(Queries):
         }"""
         return self.make_query(query)
 
-    def find_top_five_relations_judge_kind(self):
-        # clear()
-
-        # query = """{
-        #     data(func: has(is_kind), first: 1) {
-        #         name
-        #         lawsuit: ~kind {
-        #             judge {
-        #                 name
-        #             }
-        #         }
-        #     }
-        # }"""
-
-        # query = """{
-        #     var(func: has(is_kind)) {
-        #         totalKind as count(~kind)
-        #     }
-
-        #     data(func: uid(totalKind), orderdesc: val(totalKind), first: 1) {
-        #         totalKind:val(totalKind)
-        #         name
-        #         ~kind @groupby(judge) {
-        #             count(uid)
-        #         }
-        #     }
-        # }"""
-
-        # Do kind, ver quais ja o chamaram, e agrupar pelos juizes
-
-        # res = self.make_query(query)
-        # print(json.loads(res.json).get('data'))
-        pass
+    def find_thousand_lawsuits_numbers(self):
+        query = """
+            data(func: has(number), first: 1000) {
+                number
+             }
+        """
+        return self.make_query(query)
 
     def find_every_related_data(self):
         query = """{
