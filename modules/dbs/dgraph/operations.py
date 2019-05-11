@@ -35,4 +35,5 @@ class DgraphOperations:
     def load_data(self):
         print("[Loading dgraph via os.system]")
         print("Executing script/liveLoad.sh")
+        # https://github.com/dgraph-io/dgraph/issues/1991
         os.system("./scripts/liveLoader.sh")
