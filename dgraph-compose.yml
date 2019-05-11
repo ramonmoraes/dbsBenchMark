@@ -13,6 +13,7 @@ services:
     server:
         image: dgraph/dgraph:v1.0.14
         volumes:
+          - dgraph:/dgraph
           - ./data:/dgraph/data
         ports:
           - 8080:8080
@@ -22,6 +23,7 @@ services:
     ratel:
         image: dgraph/dgraph:v1.0.14
         volumes:
+          - dgraph:/dgraph
           - ./data:/dgraph/data
         ports:
           - 8000:8000
