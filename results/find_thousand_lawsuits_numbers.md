@@ -1,0 +1,22 @@
+| Class | Function | Time(s) |
+|-|-|-|
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4161730050000187 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0014151939994917484 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4291252689999965 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.001296467000429402 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4530674119996547 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0013075610004307237 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.412007025001003 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0017043400002876297 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4552192760002072 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.001501667000411544 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4524145269988367 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0016066440002759919 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.4661182010004268 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0013347579988476355 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.657082186999105 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.001255839000805281 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.8027232799995545 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.0013514309994206997 |
+| DgraphQueries | find_thousand_lawsuits_numbers | 1.7978858429996762 |
+| SqlQueries | find_thousand_lawsuits_numbers | 0.001341442999546416 |
