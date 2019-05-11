@@ -1,4 +1,4 @@
-from modules.dbs.sql.connection import connection
+import MySQLdb
 from os.path import abspath
 
 
@@ -14,8 +14,13 @@ DEFAULT_TABLES = [
 
 
 class SqlOperations:
+    def __init__(self):
+        self.connection = MySQLdb.connect(
+            host="127.0.0.1", port=3306, user="user", password="password", db="db"
+        )
+
     def get_cursor(self):
-        return connection.cursor()
+        return self.connection.cursor()
 
     def print_cursor(self, cursor):
         for res in cursor.fetchall():
@@ -41,7 +46,7 @@ class SqlOperations:
         for querie in querys:
             print(".", end="")
             cursor.execute(querie)
-            connection.commit()
+            self.connection.commit()
         print("[Done]")
 
     def create_tables(self):
@@ -96,5 +101,5 @@ class SqlOperations:
             cursor.execute(command)
 
         self.print_cursor(cursor)
-        connection.commit()
+        self.connection.commit()
         print("[Done]")
