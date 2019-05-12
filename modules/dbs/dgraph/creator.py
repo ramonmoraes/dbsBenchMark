@@ -35,7 +35,7 @@ class DgraphCreator(Creator):
             f.write(nquads)
             f.write("\n")
 
-    def create_nquad(self, amount=5):
+    def create_nquad(self, amount=500000):
         self.clean_file(NQUAD_PATH)
         for lawsuit_batch in list_batch(self.lawsuits_numbers, amount):
             nquads = []
