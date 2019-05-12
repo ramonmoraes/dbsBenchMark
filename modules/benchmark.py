@@ -25,7 +25,6 @@ class BenchMark:
             self.create_data()
             self.insert_data()
             self.make_queries()
-            self.compare_results()
 
     def pre_scripts(self):
         print("Pre-scripts")
@@ -72,7 +71,7 @@ class BenchMark:
 
 
     def compare_results(self):
-        print(self.sql_results, self.dgraph_results)
+        pass
 
     def create_mysql_db(self):
         self.sqlOps.recreate_database()
