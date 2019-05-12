@@ -50,7 +50,6 @@ def create_simple_tables():
             Kind(),
             CourtSection(),
             Disctrict(),
-            Subject(),
         ]
     )
     tables = tc.create_tables()
