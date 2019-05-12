@@ -30,3 +30,7 @@ class Creator:
                 "kinds": len(self.kinds),
             }
         }
+
+    def clean_file(self, path):
+        with open(path, "w"):
+            print("Cleaning file at", path)

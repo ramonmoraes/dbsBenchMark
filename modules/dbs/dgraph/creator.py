@@ -28,10 +28,6 @@ NQUAD_PATH = "data/nquad/lawsuits.rdf"
 
 
 class DgraphCreator(Creator):
-    def clean_nquad_file(self):
-        with open(NQUAD_PATH, "w"):
-            print("Cleaning file at", NQUAD_PATH)
-
     def write_nquads(self, nquads, amount):
         print("Writting {} relateds lawsuits".format(amount))
         with open(NQUAD_PATH, "a") as f:
@@ -39,8 +35,8 @@ class DgraphCreator(Creator):
             f.write(nquads)
             f.write("\n")
 
-    def create_nquad(self, amount=500000):
-        self.clean_nquad_file()
+    def create_nquad(self, amount=5):
+        self.clean_file(NQUAD_PATH)
         for lawsuit_batch in list_batch(self.lawsuits_numbers, amount):
             nquads = []
             for lawsuit_number in lawsuit_batch:
