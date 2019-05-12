@@ -1,3 +1,4 @@
+import os
 import csv
 import random
 
@@ -18,7 +19,7 @@ CSV_PATH = "data/csv"
 
 class CsvCreator(Creator):
     def create_basic_csv(self):
-        obj = self.__dict__
+        obj = self.__dict__.copy()
         del obj["lawsuits_numbers"]
         del obj["_meta_data"]
         for k, v in obj.items():
@@ -52,6 +53,8 @@ class CsvCreator(Creator):
             self.write_csv(lawsuit_path, related_lawsuits)
 
     def create_related_csv(self):
+        print("Cleaning files on data/csv/*.csv")
+        os.system("rm -rf data/csv/*.csv")
         self.create_basic_csv()
         self.create_lawsuit_csv()
         self.create_one_to_many_lawsuitlawyer()
