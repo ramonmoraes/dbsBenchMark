@@ -14,7 +14,7 @@ def list_batch(iterable, n=10000):
 class Creator:
     def __init__(self):
         data = load_dataset()
-        self.related_people = list(
+        self.persons = list(
             map(lambda n: Person({"name": n}), data.get("related_peoples"))
         )
         self.lawyers = list(map(lambda n: Lawyer({"name": n}), data.get("lawyers")))
@@ -24,7 +24,7 @@ class Creator:
         self._meta_data = {
             "sizes": {
                 "lawsuits_numbers": len(self.lawsuits_numbers),
-                "related_people": len(self.related_people),
+                "persons": len(self.persons),
                 "lawyers": len(self.lawyers),
                 "judges": len(self.judges),
                 "kinds": len(self.kinds),

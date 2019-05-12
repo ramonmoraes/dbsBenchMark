@@ -8,6 +8,9 @@ TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
 
 
 def get_table_name(str):
+    last_char = str[len(str)-1:]
+    if last_char == 's':
+        str = str[:-1]
     return "{}{}".format(str.lower(), "Table")
 
 

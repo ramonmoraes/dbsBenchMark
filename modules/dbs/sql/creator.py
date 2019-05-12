@@ -40,7 +40,7 @@ class CsvCreator(Creator):
 
     def create_lawsuit_csv(self):
         lawsuits = self.__dict__["lawsuits_numbers"]
-        lawsuit_path = "data/csv/lawsuits.csv"
+        lawsuit_path = "data/csv/lawsuitTable.csv"
         for lawsuit_batch in list_batch(lawsuits, 500000):
             related_lawsuits = []
             for lawsuit_number in lawsuit_batch:
@@ -75,7 +75,7 @@ class CsvCreator(Creator):
 
     def create_one_to_many_lawsuitperson(self):
         lawsuits_amount = self._meta_data.get("sizes").get("lawsuits_numbers")
-        related_people = self._meta_data.get("sizes").get("related_people")
+        related_people = self._meta_data.get("sizes").get("persons")
         lawsuitlawyerTable_path = "data/csv/lawsuitpersonTable.csv"
         data_list = []
         for lawsuit_id in range(lawsuits_amount):

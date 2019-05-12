@@ -60,7 +60,7 @@ class DgraphCreator(Creator):
                 for i in range(random.randint(0, MAX_PERSON_PER_LAWSUIT)):
                     related_nquads.extend(
                         self.get_related_nquads(
-                            lawsuit_number, random.choice(self.related_people)
+                            lawsuit_number, random.choice(self.persons)
                         )
                     )
                 nquads.extend(related_nquads)

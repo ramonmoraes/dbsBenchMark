@@ -37,6 +37,6 @@ def get_queires():
         for k, v in data.items():
             if v:
                 queries.extend(create_query(get_table_name(k), v))
-        queries.extend(create_query(get_table_name("lawsuit"), law_dict))
+        queries.extend(create_query(get_table_name("lawsuits"), law_dict))
         for q in queries:
             print(q)
