@@ -61,6 +61,8 @@ class BenchMark:
         self.insert_dgraph_data()
 
     def make_queries(self):
+        print("Sleeping for 10 seconds")
+        time.sleep(10)
         for i in range(QUERY_REPEAT_AMOUNT):
             for queryMaker in [self.dgraphQueries, self.sqlQueries]:
                 class_name = queryMaker.__class__.__name__
