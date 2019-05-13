@@ -14,7 +14,7 @@ from modules.results_writter import ResultWritter
 QUERY_REPEAT_AMOUNT = 10
 
 class BenchMark:
-    def __init__(self, amount=2):
+    def __init__(self, amount=3):
         self.amount = amount
 
     def start(self):
