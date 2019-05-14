@@ -80,9 +80,9 @@ class Plotter:
 
     def get_plot_title(self, name):
         title_map = {
-            "find_judge_with_more_lawsuits": "Juizes que julgaram mais processos",
-            "find_every_related_data": "Todos dados relacionados ao juiz",
-            "find_thousand_lawsuits_numbers": "Encontrar o numero de 1000 processo",
+            "find_judge_with_more_lawsuits": "5 Juízes que julgaram mais processos",
+            "find_every_related_data": "Todos dados relacionados a 100 juízes",
+            "find_thousand_lawsuits_numbers": "Encontrar os números de 1000 processos",
         }
         return title_map.get(name, "notfound")
 
