@@ -13,6 +13,7 @@ from modules.results_writter import ResultWritter
 
 QUERY_REPEAT_AMOUNT = 10
 
+
 class BenchMark:
     def __init__(self, amount=3):
         self.amount = amount
@@ -67,10 +68,17 @@ class BenchMark:
             for queryMaker in [self.dgraphQueries, self.sqlQueries]:
                 class_name = queryMaker.__class__.__name__
                 writter = ResultWritter(class_name)
-                writter.write_result("find_every_related_data", queryMaker.find_every_related_data)
-                writter.write_result("find_judge_with_more_lawsuits", queryMaker.find_judge_with_more_lawsuits)
-                writter.write_result("find_thousand_lawsuits_numbers", queryMaker.find_thousand_lawsuits_numbers)
-
+                writter.write_result(
+                    "find_every_related_data", queryMaker.find_every_related_data
+                )
+                writter.write_result(
+                    "find_judge_with_more_lawsuits",
+                    queryMaker.find_judge_with_more_lawsuits,
+                )
+                writter.write_result(
+                    "find_thousand_lawsuits_numbers",
+                    queryMaker.find_thousand_lawsuits_numbers,
+                )
 
     def compare_results(self):
         pass

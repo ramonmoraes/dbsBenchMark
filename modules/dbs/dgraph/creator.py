@@ -18,7 +18,7 @@ def get_nquad(subject, predicate, obj):
     if isinstance(obj, str) and not subject_sufix_regex.match(obj):
         obj = '"{}"'.format(obj)
 
-    subject = re.sub('[^A-Za-z0-9]+', '', subject)
+    subject = re.sub("[^A-Za-z0-9]+", "", subject)
     return NQUAD_TEMPLATE.format(
         subject=subject, predicate=predicate.lower(), object=obj
     )

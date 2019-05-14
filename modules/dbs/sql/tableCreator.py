@@ -8,8 +8,8 @@ TABLE_TEMPLATE = """CREATE TABLE IF NOT EXISTS {table_name} (
 
 
 def get_table_name(str):
-    last_char = str[len(str)-1:]
-    if last_char == 's':
+    last_char = str[len(str) - 1 :]
+    if last_char == "s":
         str = str[:-1]
     return "{}{}".format(str.lower(), "Table")
 
@@ -46,14 +46,7 @@ class TableCreator:
 
 def create_simple_tables():
     tc = TableCreator(
-        models=[
-            Person(),
-            Lawyer(),
-            Judge(),
-            Kind(),
-            CourtSection(),
-            Disctrict(),
-        ]
+        models=[Person(), Lawyer(), Judge(), Kind(), CourtSection(), Disctrict()]
     )
     tables = tc.create_tables()
     print("Creating simple tables")

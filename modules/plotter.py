@@ -4,6 +4,7 @@ import re
 import csv
 import pathlib
 
+
 class Plotter:
     def __init__(self, show=False, save=False):
         self.round_up_amount = 2
@@ -25,10 +26,10 @@ class Plotter:
 
     def get_results_from_file(self, fp):
         print("Getting results from ", fp)
-        with open(fp, 'r') as f:
+        with open(fp, "r") as f:
             f.readline()
             f.readline()
-            csv_reader = csv.reader(f, delimiter='|')
+            csv_reader = csv.reader(f, delimiter="|")
             graphs = {}
             for row in csv_reader:
                 row = [value.strip() for value in row if value.strip()]
@@ -44,7 +45,6 @@ class Plotter:
                 graphs[db][method].append(result)
             return graphs
 
-
     def reduce_results(self, arr):
         reduced = {}
         for val in arr:
@@ -55,14 +55,12 @@ class Plotter:
                 reduced[rounded] = reduced[rounded] + 1
         return reduced
 
-
     def reduced_to_plot_format(self, reduced):
         formated = []
         for k, v in reduced.items():
             for _ in range(v):
                 formated.append(k)
         return formated
-
 
     def create_plots(self, results):
         for db, method in results.items():
@@ -73,16 +71,12 @@ class Plotter:
                 plt.xlabel("Segundos")
                 plt.ylabel("Quantidade")
                 plt.title(self.get_plot_title(method_name))
-                plt.legend(loc='upper right')
+                plt.legend(loc="upper right")
 
     def get_db_name(self, name):
-        db_name_map = {
-            "SqlQueries": "MySQL",
-            "DgraphQueries": "DgraphDB",
-        }
+        db_name_map = {"SqlQueries": "MySQL", "DgraphQueries": "DgraphDB"}
 
         return db_name_map.get(name, "notfound")
-
 
     def get_plot_title(self, name):
         title_map = {
@@ -91,5 +85,6 @@ class Plotter:
             "find_thousand_lawsuits_numbers": "Encontrar o numero de 1000 processo",
         }
         return title_map.get(name, "notfound")
+
 
 p = Plotter(save=True)
